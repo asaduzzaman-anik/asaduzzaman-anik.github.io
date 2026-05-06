@@ -5,13 +5,35 @@ html {
 }
 
 body {
-  background: #050816;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(0, 255, 255, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(168, 85, 247, 0.08),
+      transparent 35%
+    ),
+    #050816;
   color: white;
   overflow-x: hidden;
+  @apply bg-white text-black dark:bg-[#0B0F19] dark:text-gray-200;
 }
 
 .glass {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+section {
+  scroll-margin-top: 100px;
+}
+
+* {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
