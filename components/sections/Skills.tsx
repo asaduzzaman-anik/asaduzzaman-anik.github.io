@@ -33,7 +33,6 @@ export default function Skills() {
     },
     { name: "Next.js", icon: <SiNextdotjs className="text-white text-5xl" /> },
     { name: "Python", icon: <FaPython className="text-blue-400 text-5xl" /> },
-    { name: "Git", icon: <FaGitAlt className="text-orange-500 text-5xl" /> },
     { name: "HTML5", icon: <FaHtml5 className="text-orange-600 text-5xl" /> },
     { name: "CSS3", icon: <FaCss3Alt className="text-blue-500 text-5xl" /> },
   ];
@@ -49,7 +48,9 @@ export default function Skills() {
           <p className="text-blue-600 dark:text-cyan-400 uppercase tracking-widest mb-3 font-semibold">
             Technical Expertise
           </p>
-          <h2 className="text-5xl font-bold text-slate-900 dark:text-white">Skills & Technologies</h2>
+          <h2 className="text-5xl font-bold text-slate-900 dark:text-white">
+            Skills & Technologies
+          </h2>
           <p className="text-slate-600 dark:text-slate-400 mt-4 max-w-2xl mx-auto">
             Building modern full-stack applications with scalable backend
             architecture and interactive frontend experiences.
@@ -67,7 +68,9 @@ export default function Skills() {
               <div className="mb-5 group-hover:scale-110 transition-transform">
                 {skill.icon}
               </div>
-              <h3 className="font-semibold text-lg text-slate-800 dark:text-white">{skill.name}</h3>
+              <h3 className="font-semibold text-lg text-slate-800 dark:text-white">
+                {skill.name}
+              </h3>
             </motion.div>
           ))}
         </div>
