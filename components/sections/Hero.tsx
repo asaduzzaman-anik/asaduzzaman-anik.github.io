@@ -1,116 +1,208 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaEnvelope,
-  FaLaravel,
-  FaReact,
-  FaPhp,
-} from "react-icons/fa";
-import { SiMysql } from "react-icons/si";
+import Reveal from "@/components/ui/Reveal";
+import { siteConfig } from "@/data/portfolio";
 
 export default function Hero() {
-  const floatingIcons = [
-    {
-      icon: <FaLaravel className="text-red-500 text-3xl" />,
-      pos: "top-10 left-0",
-    },
-    {
-      icon: <FaReact className="text-cyan-400 text-3xl" />,
-      pos: "top-20 right-0",
-    },
-    {
-      icon: <FaPhp className="text-indigo-400 text-3xl" />,
-      pos: "bottom-24 left-8",
-    },
-    {
-      icon: <SiMysql className="text-blue-400 text-3xl" />,
-      pos: "bottom-10 right-8",
-    },
-  ];
-
   return (
-    <section
-      id="home"
-      className="grid lg:grid-cols-2 gap-16 items-center py-24 min-h-[90vh]"
-    >
-      <motion.div
-        initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
-      >
-        <p className="text-blue-600 dark:text-cyan-400 font-semibold tracking-widest mb-4 uppercase">
-          Full Stack Developer
-        </p>
+    <section id="home" className="relative min-h-screen overflow-hidden pt-28">
+      <div className="absolute inset-0 -z-10 bg-hero-grid bg-[size:42px_42px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
 
-        <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
-          Md Asaduzzaman{" "}
-          <span className="text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500 bg-clip-text">
-            Anik
-          </span>
-        </h1>
-
-        <p className="mt-6 text-lg text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-          Building scalable CRM, POS, dashboard systems and intelligent web
-          solutions with Laravel, React, and modern backend architecture.
-        </p>
-
-        <div className="flex gap-4 mt-8">
-          <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-500 dark:to-purple-600 text-white font-semibold hover:scale-105 transition-transform shadow-lg shadow-blue-500/30 dark:shadow-none cursor-pointer">
-            View Projects
-          </button>
-          <button className="px-8 py-4 rounded-xl border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors cursor-pointer">
-            Hire Me
-          </button>
-        </div>
-
-        <div className="flex gap-5 mt-8 text-2xl text-slate-500 dark:text-slate-300">
-          <a href="https://github.com/asaduzzaman-anik" target="blank">
-            <FaGithub className="hover:text-slate-900 dark:hover:text-white cursor-pointer transition-colors" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/anik-asaduzzaman/"
-            target="blank"
-          >
-            <FaLinkedin className="hover:text-blue-600 dark:hover:text-cyan-400 cursor-pointer transition-colors" />
-          </a>
-          <a href="mailto:asaduzzamananik12@gmail.com" target="blank">
-            <FaEnvelope className="hover:text-purple-600 dark:hover:text-purple-400 cursor-pointer transition-colors" />
-          </a>
-        </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="relative flex justify-center"
-      >
-        <div className="absolute w-[420px] h-[420px] rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-cyan-500/20 dark:to-purple-500/20 blur-3xl" />
-
-        <div className="relative w-[360px] h-[360px] rounded-full p-2 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-cyan-400 dark:to-purple-500 shadow-[0_0_40px_rgba(59,130,246,0.2)] dark:shadow-[0_0_80px_rgba(34,211,238,0.25)]">
-          <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-100 dark:bg-slate-900">
-            <Image
-              src="/profile.jpg"
-              alt="Md Asaduzzaman Anik"
-              fill
-              className="object-cover"
-            />
+      <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-16 px-5 py-16 sm:px-8 lg:grid-cols-[1.08fr_.92fr] lg:px-10 lg:py-20">
+        <Reveal>
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-indigo-200 bg-indigo-50 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.17em] text-indigo-700 dark:border-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-300">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            Available for selected projects
           </div>
-        </div>
 
-        {floatingIcons.map((item, i) => (
-          <motion.div
-            key={i}
-            animate={{ y: [0, -10, 0] }}
-            transition={{ repeat: Infinity, duration: 3 + i }}
-            className={`absolute ${item.pos} bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-white/10 p-4 rounded-2xl backdrop-blur-xl shadow-lg`}
-          >
-            {item.icon}
-          </motion.div>
-        ))}
-      </motion.div>
+          <p className="mb-4 text-base font-semibold text-indigo-600 dark:text-indigo-400">
+            Hello, I&apos;m {siteConfig.name}
+          </p>
+
+          <h1 className="max-w-4xl font-display text-5xl font-extrabold leading-[1.05] tracking-[-0.045em] text-slate-950 sm:text-6xl lg:text-7xl dark:text-white">
+            I build reliable{" "}
+            <span className="text-gradient">digital products</span> for real
+            businesses.
+          </h1>
+
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl dark:text-slate-400">
+            {siteConfig.description}
+          </p>
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#projects"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-600/20 transition hover:-translate-y-1 hover:bg-indigo-700"
+            >
+              View my work
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white/70 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:-translate-y-1 hover:border-slate-400 dark:border-slate-700 dark:bg-slate-900/70 dark:text-white dark:hover:border-slate-600"
+            >
+              Start a conversation
+            </a>
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4 text-sm text-slate-500">
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-slate-950 dark:hover:text-white"
+            >
+              GitHub
+            </a>
+            <a
+              href={siteConfig.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-slate-950 dark:hover:text-white"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="transition hover:text-slate-950 dark:hover:text-white"
+            >
+              Resume
+            </a>
+            <span className="hidden h-4 w-px bg-slate-300 sm:block dark:bg-slate-700" />
+            <span>Based in Bangladesh · Working globally</span>
+          </div>
+        </Reveal>
+
+        <Reveal className="relative mx-auto w-full max-w-[540px] lg:mx-0 lg:ml-auto">
+          <div className="absolute -inset-10 -z-10 rounded-full bg-indigo-500/10 blur-3xl" />
+
+          <div className="relative rounded-[2rem] border border-white/70 bg-white/75 p-3 shadow-[var(--shadow-soft)] backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/75">
+            <div className="overflow-hidden rounded-[1.55rem] border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+              <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4 dark:border-white/10">
+                <div className="flex gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-rose-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                </div>
+                <span className="font-mono text-xs text-slate-500">anik.dev</span>
+              </div>
+
+              <div className="space-y-6 p-6 sm:p-8">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+                      Current focus
+                    </p>
+                    <h2 className="mt-2 font-display text-xl font-bold text-slate-950 dark:text-white">
+                      Scalable business software
+                    </h2>
+                  </div>
+                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-300">
+                    <svg
+                      className="h-6 w-6"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.7"
+                    >
+                      <path d="M4 17 10 11l4 4 6-7" />
+                      <path d="M14 8h6v6" />
+                    </svg>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/[0.04]">
+                    <p className="text-2xl font-bold text-slate-950 dark:text-white">4+</p>
+                    <p className="mt-1 text-xs text-slate-500">Core technologies</p>
+                  </div>
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/[0.04]">
+                    <p className="text-2xl font-bold text-slate-950 dark:text-white">12+</p>
+                    <p className="mt-1 text-xs text-slate-500">Major modules built</p>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/[0.04]">
+                  <div className="mb-4 flex items-center justify-between">
+                    <span className="text-sm font-semibold text-slate-950 dark:text-white">
+                      Technology stack
+                    </span>
+                    <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-300">
+                      Active
+                    </span>
+                  </div>
+                  <div className="space-y-3">
+                    {[
+                      ["Laravel", "Backend"],
+                      ["Next.js + React", "Frontend"],
+                      ["Tailwind CSS", "UI System"],
+                    ].map(([tech, label]) => (
+                      <div
+                        key={tech}
+                        className="flex items-center justify-between rounded-xl bg-white px-3 py-2.5 shadow-sm dark:bg-white/[0.04] dark:shadow-none"
+                      >
+                        <span className="text-sm text-slate-700 dark:text-slate-300">{tech}</span>
+                        <span className="text-xs text-slate-500">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 rounded-2xl border border-indigo-200 bg-indigo-50 p-4 dark:border-indigo-400/20 dark:bg-indigo-400/10">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-indigo-100 text-indigo-600 dark:bg-indigo-400/15 dark:text-indigo-300">
+                    <svg
+                      className="h-5 w-5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+                  <p className="text-sm leading-6 text-indigo-900 dark:text-indigo-100">
+                    Focused on maintainable architecture, thoughtful UX, and
+                    measurable business value.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute -bottom-7 -left-5 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[var(--shadow-soft)] sm:block dark:border-slate-800 dark:bg-slate-900">
+            <div className="flex items-center gap-3">
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-xs text-slate-500">Business impact</p>
+                <p className="text-sm font-bold text-slate-900 dark:text-white">
+                  Built for growth
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }
