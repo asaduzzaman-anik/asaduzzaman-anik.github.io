@@ -6,6 +6,7 @@ export const siteConfig = {
   location: "Bangladesh · Available remotely",
   github: "https://github.com/asaduzzaman-anik",
   linkedin: "https://www.linkedin.com/in/anik-asaduzzaman/",
+  resume: "/resume.pdf",
   description:
     "Full Stack Developer specializing in Laravel, React, and Next.js. I transform complex workflows into fast, scalable, and thoughtfully designed web applications.",
 };

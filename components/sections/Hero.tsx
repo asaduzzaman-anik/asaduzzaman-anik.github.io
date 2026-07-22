@@ -5,7 +5,7 @@ import { siteConfig } from "@/data/portfolio";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden pt-28">
+    <section id="home" className="relative min-h-screen overflow-hidden pt-20">
       <div className="absolute inset-0 -z-10 bg-hero-grid bg-[size:42px_42px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
 
       <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-16 px-5 py-16 sm:px-8 lg:grid-cols-[1.08fr_.92fr] lg:px-10 lg:py-20">
@@ -90,10 +90,21 @@ export default function Hero() {
               </svg>
             </a>
             <a
-              href={`mailto:${siteConfig.email}`}
-              className="transition hover:text-slate-950 dark:hover:text-white"
+              href={siteConfig.resume}
+              download="Anik-Resume.pdf"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white/70 px-3 py-1.5 text-slate-700 transition hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-white"
             >
-              Resume
+              <svg
+                className="h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
+              </svg>
+              Download resume
             </a>
             <span className="hidden h-4 w-px bg-slate-300 sm:block dark:bg-slate-700" />
             <span>Based in Bangladesh · Working globally</span>
@@ -196,7 +207,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="absolute -bottom-7 -left-5 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[var(--shadow-soft)] sm:block dark:border-slate-800 dark:bg-slate-900">
+          <div className="absolute -bottom-10 -left-10 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[var(--shadow-soft)] sm:block dark:border-slate-800 dark:bg-slate-900">
             <div className="flex items-center gap-3">
               <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
                 <svg
