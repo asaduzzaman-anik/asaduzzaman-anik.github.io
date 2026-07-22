@@ -17,14 +17,34 @@
   --shadow-glow: 0 0 80px rgba(99, 102, 241, 0.18);
 }
 
+:root {
+  /* Matches Navbar nav h-20 */
+  --nav-height: 5rem;
+}
+
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
 }
 
 body {
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+}
+
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+label[for],
+summary {
+  cursor: pointer;
+}
+
+:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
 }
 
 .text-gradient {
@@ -61,6 +81,7 @@ body {
   transform: translateY(0);
 }
 
-section {
-  scroll-margin-top: 100px;
+/* Anchor jumps land with the section top flush under the fixed navbar */
+section[id] {
+  scroll-margin-top: var(--nav-height);
 }

@@ -9,121 +9,6 @@ const categoryColors: Record<string, string> = {
   violet: "text-violet-600 dark:text-violet-400",
 };
 
-const cardBaseClass =
-  "project-card group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] dark:border-slate-800 dark:bg-slate-900";
-
-function ProjectImage({
-  src,
-  alt,
-  wide = false,
-}: {
-  src: string;
-  alt: string;
-  wide?: boolean;
-}) {
-  return (
-    <div
-      className={`relative overflow-hidden bg-slate-100 dark:bg-slate-800 ${
-        wide ? "min-h-[260px] h-full" : "aspect-[16/10]"
-      }`}
-    >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className="project-preview object-cover object-top transition duration-500"
-        sizes={
-          wide
-            ? "(max-width: 1024px) 100vw, 50vw"
-            : "(max-width: 1024px) 100vw, 40vw"
-        }
-      />
-    </div>
-  );
-}
-
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
-  const href = project.live || project.github;
-
-  const meta = (
-    <>
-      <div className="flex items-start justify-between gap-5">
-        <div>
-          <p
-            className={`text-xs font-bold uppercase tracking-[0.15em] ${categoryColors[project.categoryColor]}`}
-          >
-            {project.category}
-          </p>
-          <h3 className="mt-3 font-display text-2xl font-bold text-slate-950 dark:text-white">
-            {project.title}
-          </h3>
-        </div>
-        <span
-          className="project-arrow text-2xl leading-none text-slate-400 transition-transform duration-300"
-          aria-hidden
-        >
-          ↗
-        </span>
-      </div>
-      <p
-        className={`mt-4 leading-7 text-slate-600 dark:text-slate-400 ${project.layout === "wide" ? "max-w-xl" : ""}`}
-      >
-        {project.description}
-      </p>
-      <div className="mt-6 flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium dark:border-slate-700"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </>
-  );
-
-  if (project.layout === "wide") {
-    const content = (
-      <div className={`${cardBaseClass} lg:col-span-2`}>
-        <div className="grid lg:grid-cols-[1.05fr_.95fr]">
-          <div className="order-2 p-7 sm:p-9 lg:order-1 lg:p-10">{meta}</div>
-          <div className="order-1 lg:order-2">
-            <ProjectImage
-              src={project.image}
-              alt={project.title}
-              wide
-            />
-          </div>
-        </div>
-      </div>
-    );
-
-    return href ? (
-      <a href={href} target="_blank" rel="noopener noreferrer">
-        {content}
-      </a>
-    ) : (
-      content
-    );
-  }
-
-  const content = (
-    <div className={cardBaseClass}>
-      <ProjectImage src={project.image} alt={project.title} />
-      <div className="p-7 sm:p-8">{meta}</div>
-    </div>
-  );
-
-  return href ? (
-    <a href={href} target="_blank" rel="noopener noreferrer">
-      {content}
-    </a>
-  ) : (
-    content
-  );
-}
-
 export default function Projects() {
   return (
     <section
@@ -148,12 +33,73 @@ export default function Projects() {
           </a>
         </Reveal>
 
-        <div className="mt-14 grid gap-7 lg:grid-cols-2">
-          {projects.map((project) => (
-            <Reveal key={project.title}>
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => {
+            const href = project.live || project.github;
+            const card = (
+              <div className="project-card group h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] dark:border-slate-800 dark:bg-slate-900">
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="project-preview object-cover object-top transition duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p
+                        className={`text-[11px] font-bold uppercase tracking-[0.15em] ${categoryColors[project.categoryColor]}`}
+                      >
+                        {project.category}
+                      </p>
+                      <h3 className="mt-2 font-display text-lg font-bold leading-snug text-slate-950 dark:text-white">
+                        {project.title}
+                      </h3>
+                    </div>
+                    <span
+                      className="project-arrow shrink-0 text-xl leading-none text-slate-400 transition-transform duration-300"
+                      aria-hidden
+                    >
+                      ↗
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    {project.description}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-slate-200 px-2.5 py-1 text-[11px] font-medium dark:border-slate-700"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+
+            return (
+              <Reveal key={project.title} className="h-full">
+                {href ? (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block h-full"
+                  >
+                    {card}
+                  </a>
+                ) : (
+                  card
+                )}
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

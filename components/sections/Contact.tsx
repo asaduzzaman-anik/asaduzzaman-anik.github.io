@@ -104,10 +104,7 @@ export default function Contact() {
               </p>
 
               <div className="mt-9 space-y-4">
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-3 text-sm text-slate-600 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
-                >
+                <div className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 dark:bg-white/5">
                     <svg
                       className="h-5 w-5"
@@ -121,7 +118,7 @@ export default function Contact() {
                     </svg>
                   </span>
                   {siteConfig.email}
-                </a>
+                </div>
                 <div className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 dark:bg-white/5">
                     <svg

@@ -109,7 +109,6 @@ export const projects = [
     tags: ["Laravel", "MySQL", "Bootstrap", "jQuery"],
     live: "https://eclipseautoparts.com/",
     github: "",
-    layout: "card" as const,
     image: "/projects/eclipse-erp.png",
   },
   {
@@ -121,7 +120,6 @@ export const projects = [
     tags: ["Laravel", "React", "REST APIs"],
     live: "https://laradashboard.com/",
     github: "https://github.com/laradashboard/laradashboard",
-    layout: "card" as const,
     image: "/projects/laradashboard.png",
   },
   {
@@ -133,7 +131,6 @@ export const projects = [
     tags: ["Laravel", "Blade", "Tailwind CSS", "MySQL"],
     live: "",
     github: "",
-    layout: "card" as const,
     image: "/projects/chakribazar.png",
   },
 ];
