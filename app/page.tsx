@@ -13,9 +13,12 @@ import TrustStrip from "@/components/sections/TrustStrip";
 export default function Page() {
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <BackgroundDecor />
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
         <TrustStrip />
         <About />

@@ -14,6 +14,15 @@ export default function Reveal({ children, className = "" }: RevealProps) {
     const element = ref.current;
     if (!element) return;
 
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      element.classList.add("is-visible");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

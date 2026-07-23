@@ -3,10 +3,11 @@ export const siteConfig = {
   fullName: "Md Asaduzzaman Anik",
   title: "Full Stack Developer",
   email: "asaduzzamananik12@gmail.com",
-  location: "Bangladesh · Available remotely",
+  location: "Dhaka, Bangladesh · Available remotely",
   github: "https://github.com/asaduzzaman-anik",
   linkedin: "https://www.linkedin.com/in/anik-asaduzzaman/",
   resume: "/resume.pdf",
+  url: "https://asaduzzaman-anik.github.io",
   description:
     "Full Stack Developer specializing in Laravel, React, and Next.js. I transform complex workflows into fast, scalable, and thoughtfully designed web applications.",
 };
@@ -20,11 +21,31 @@ export const navLinks = [
 ];
 
 export const trustStats = [
-  { value: "3+", label: "Production projects" },
+  { value: "3+", label: "Production systems" },
   { value: "12+", label: "Business modules" },
-  { value: "100%", label: "Responsive delivery" },
-  { value: "Global", label: "Remote collaboration" },
+  { value: "120+", label: "Students mentored" },
+  { value: "15+", label: "Capstones supervised" },
 ];
+
+export const aboutContent = {
+  headline: "Engineering with clarity, not complexity.",
+  paragraphs: [
+    "I help businesses and product teams turn operational workflows into reliable web software — especially ERP, CRM, SRM, and ecommerce systems — using Laravel on the backend and React or Next.js on the frontend.",
+    "I focus on understandable architecture, strong access control, polished interfaces, and code that stays maintainable as the product grows. Open to full-stack roles and selected freelance projects.",
+  ],
+  traits: [
+    {
+      title: "Product-minded",
+      description:
+        "I connect technical decisions with user needs and business goals.",
+    },
+    {
+      title: "Detail-focused",
+      description:
+        "I refine edge cases, interactions, permissions, and visual consistency.",
+    },
+  ],
+};
 
 export const skillCategories = [
   {
@@ -33,7 +54,7 @@ export const skillCategories = [
     title: "Backend Development",
     description:
       "Secure APIs, business workflows, authentication, authorization, and modular application architecture.",
-    tags: ["Laravel", "PHP", "REST API", "MySQL"],
+    tags: ["Laravel", "PHP", "REST API", "MySQL", "Auth / RBAC"],
   },
   {
     icon: "R",
@@ -41,7 +62,7 @@ export const skillCategories = [
     title: "Frontend Engineering",
     description:
       "Responsive interfaces with reusable components, accessible interactions, and smooth client-side experiences.",
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Git"],
   },
   {
     icon: "ui",
@@ -57,8 +78,8 @@ export const experiences = [
   {
     role: "Full Stack Developer",
     company: "Eclipse Auto Parts ERP",
-    location: "Manchester, United Kingdom · Remote",
-    duration: "2025 — Present",
+    location: "Manchester, United Kingdom · Remote (contract)",
+    duration: "Jan 2025 — Present",
     highlights: [
       "Designed and expanded CRM, SRM, procurement, inventory, and account intelligence workflows.",
       "Implemented role-based permissions, approval workflows, reporting, and operational dashboards.",
@@ -68,8 +89,8 @@ export const experiences = [
   {
     role: "Full Stack Developer",
     company: "SquartUp",
-    location: "Remote",
-    duration: "July 2025 — Present",
+    location: "Remote (contract)",
+    duration: "Jul 2025 — Present",
     highlights: [
       "Architected a full-featured CRM & POS system with eCommerce, Account 360 View, and Churn Risk Detection.",
       "Built plug-and-play modules for Laradashboard — reusable architecture, backend logic, and React UI components.",
@@ -80,7 +101,7 @@ export const experiences = [
     role: "Lecturer (Computer Science)",
     company: "Royal University of Dhaka",
     location: "Dhaka, Bangladesh",
-    duration: "May 2022 — October 2025",
+    duration: "May 2022 — Oct 2025",
     highlights: [
       "Delivered undergraduate courses in Web Development, Software Engineering, and Programming Fundamentals.",
       "Mentored 120+ students in full-stack development, version control, and modern UI/UX principles.",
@@ -88,10 +109,10 @@ export const experiences = [
     ],
   },
   {
-    role: "Backend & API Development",
-    company: "Application Projects",
-    location: "Independent and academic development",
-    duration: "2024 — 2026",
+    role: "Independent Developer",
+    company: "Personal & academic projects",
+    location: "Independent development",
+    duration: "2024 — 2025",
     highlights: [
       "Built role-based job portal workflows for employers, applicants, and administrators.",
       "Developed a hospital management API with JWT authentication and permission-aware resources.",
@@ -111,6 +132,15 @@ export const projects = [
     live: "https://eclipseautoparts.com/",
     github: "",
     image: "/projects/eclipse-erp.png",
+    status: "live" as const,
+    problem:
+      "An auto-parts business needed connected ecommerce, store, procurement, and CRM workflows instead of fragmented tools.",
+    role: "Full Stack Developer — backend modules, permissions, and UI consistency",
+    outcomes: [
+      "Shipped CRM, SRM, procurement, inventory, and account-intelligence workflows in one modular ERP.",
+      "Implemented role-based permissions, approval flows, reporting, and operational dashboards.",
+      "Improved usability across legacy Bootstrap screens and dense data tables used daily by staff.",
+    ],
   },
   {
     title: "Laradashboard Platform",
@@ -122,6 +152,15 @@ export const projects = [
     live: "https://laradashboard.com/",
     github: "https://github.com/laradashboard/laradashboard",
     image: "/projects/laradashboard.png",
+    status: "live" as const,
+    problem:
+      "Teams needed a reusable Laravel dashboard foundation instead of rebuilding auth, modules, and admin UI for every product.",
+    role: "Full Stack Developer — module architecture, APIs, and React UI components",
+    outcomes: [
+      "Built plug-and-play modules for reusable backend logic and React admin interfaces.",
+      "Delivered CRM & POS capabilities including ecommerce, Account 360 View, and churn-risk signals.",
+      "Enabled faster product setup through a maintainable, modular Laravel + React stack.",
+    ],
   },
   {
     title: "ChakriBazar Job Portal",
@@ -133,6 +172,15 @@ export const projects = [
     live: "",
     github: "",
     image: "/projects/chakribazar.png",
+    status: "private" as const,
+    problem:
+      "Recruitment needed separate, permission-aware flows for applicants, employers, and administrators.",
+    role: "Full Stack Developer — role workflows, validation, and UI",
+    outcomes: [
+      "Designed role-based hiring workflows for applicants, employers, and admins.",
+      "Built moderation and opportunity-management paths with Laravel and MySQL.",
+      "Shipped responsive, validation-focused Blade + Tailwind interfaces.",
+    ],
   },
 ];
 

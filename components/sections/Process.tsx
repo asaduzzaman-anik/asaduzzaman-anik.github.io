@@ -3,7 +3,7 @@ import { processSteps } from "@/data/portfolio";
 
 export default function Process() {
   return (
-    <section className="py-24 sm:py-32">
+    <section id="process" className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-bold uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
