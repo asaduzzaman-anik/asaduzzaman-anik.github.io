@@ -54,7 +54,7 @@ export const skillCategories = [
     title: "Backend Development",
     description:
       "Secure APIs, business workflows, authentication, authorization, and modular application architecture.",
-    tags: ["Laravel", "PHP", "REST API", "MySQL"],
+    tags: ["Laravel", "PHP", "REST API", "MySQL", "Auth / RBAC"],
   },
   {
     icon: "R",
@@ -62,7 +62,7 @@ export const skillCategories = [
     title: "Frontend Engineering",
     description:
       "Responsive interfaces with reusable components, accessible interactions, and smooth client-side experiences.",
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Git"],
   },
   {
     icon: "ui",

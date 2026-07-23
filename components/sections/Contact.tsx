@@ -256,12 +256,20 @@ export default function Contact() {
               </div>
 
               {status === "success" && (
-                <p className="sm:col-span-2 text-center text-sm text-emerald-600 dark:text-emerald-400">
+                <p
+                  role="status"
+                  aria-live="polite"
+                  className="sm:col-span-2 text-center text-sm text-emerald-600 dark:text-emerald-400"
+                >
                   Message sent successfully! I&apos;ll get back to you soon.
                 </p>
               )}
               {status === "error" && (
-                <p className="sm:col-span-2 text-center text-sm text-rose-600 dark:text-rose-400">
+                <p
+                  role="alert"
+                  aria-live="assertive"
+                  className="sm:col-span-2 text-center text-sm text-rose-600 dark:text-rose-400"
+                >
                   {errorMessage}
                 </p>
               )}
