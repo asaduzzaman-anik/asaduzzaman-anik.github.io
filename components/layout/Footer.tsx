@@ -7,16 +7,9 @@ export default function Footer() {
     <footer className="border-t border-slate-200 py-8 dark:border-slate-800">
       <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
         <p>
-          © {year} {siteConfig.name}. Designed and developed with care.
+          © {year} {siteConfig.fullName}. Designed and developed with care.
         </p>
         <div className="flex flex-wrap items-center gap-5">
-          <a
-            href={siteConfig.resume}
-            download="Anik-Resume.pdf"
-            className="transition hover:text-slate-950 dark:hover:text-white"
-          >
-            Resume
-          </a>
           <a
             href={siteConfig.github}
             target="_blank"
