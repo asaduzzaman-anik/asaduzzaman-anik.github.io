@@ -148,21 +148,6 @@ export default function Navbar() {
         <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />
 
-          <a
-            href={siteConfig.resume}
-            download="Anik-Resume.pdf"
-            className="hidden rounded-full border border-slate-300 bg-white/80 px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:text-slate-950 sm:inline-flex dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:text-white"
-          >
-            Resume
-          </a>
-
-          <a
-            href="#contact"
-            className="hidden rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-950/15 transition hover:-translate-y-0.5 hover:bg-slate-800 sm:inline-flex dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
-          >
-            Let&apos;s talk
-          </a>
-
           <button
             ref={menuButtonRef}
             type="button"
@@ -207,21 +192,6 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href={siteConfig.resume}
-            download="Anik-Resume.pdf"
-            onClick={closeMenu}
-            className="block rounded-full px-4 py-3 text-sm font-medium text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
-          >
-            Resume
-          </a>
-          <a
-            href="#contact"
-            onClick={closeMenu}
-            className="mt-0.5 block rounded-full bg-slate-950 px-4 py-3 text-center text-sm font-semibold text-white dark:bg-white dark:text-slate-950"
-          >
-            Let&apos;s talk
-          </a>
         </div>
       )}
     </header>
