@@ -132,6 +132,14 @@ export const projects = [
     github: "",
     image: "/projects/eclipse-erp.png",
     status: "live" as const,
+    problem:
+      "An auto-parts business needed connected ecommerce, store, procurement, and CRM workflows instead of fragmented tools.",
+    role: "Full Stack Developer — backend modules, permissions, and UI consistency",
+    outcomes: [
+      "Shipped CRM, SRM, procurement, inventory, and account-intelligence workflows in one modular ERP.",
+      "Implemented role-based permissions, approval flows, reporting, and operational dashboards.",
+      "Improved usability across legacy Bootstrap screens and dense data tables used daily by staff.",
+    ],
   },
   {
     title: "Laradashboard Platform",
@@ -144,6 +152,14 @@ export const projects = [
     github: "https://github.com/laradashboard/laradashboard",
     image: "/projects/laradashboard.png",
     status: "live" as const,
+    problem:
+      "Teams needed a reusable Laravel dashboard foundation instead of rebuilding auth, modules, and admin UI for every product.",
+    role: "Full Stack Developer — module architecture, APIs, and React UI components",
+    outcomes: [
+      "Built plug-and-play modules for reusable backend logic and React admin interfaces.",
+      "Delivered CRM & POS capabilities including ecommerce, Account 360 View, and churn-risk signals.",
+      "Enabled faster product setup through a maintainable, modular Laravel + React stack.",
+    ],
   },
   {
     title: "ChakriBazar Job Portal",
@@ -156,6 +172,14 @@ export const projects = [
     github: "",
     image: "/projects/chakribazar.png",
     status: "private" as const,
+    problem:
+      "Recruitment needed separate, permission-aware flows for applicants, employers, and administrators.",
+    role: "Full Stack Developer — role workflows, validation, and UI",
+    outcomes: [
+      "Designed role-based hiring workflows for applicants, employers, and admins.",
+      "Built moderation and opportunity-management paths with Laravel and MySQL.",
+      "Shipped responsive, validation-focused Blade + Tailwind interfaces.",
+    ],
   },
 ];
 
