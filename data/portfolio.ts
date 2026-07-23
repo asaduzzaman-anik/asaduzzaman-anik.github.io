@@ -20,11 +20,31 @@ export const navLinks = [
 ];
 
 export const trustStats = [
-  { value: "3+", label: "Production projects" },
+  { value: "3+", label: "Production systems" },
   { value: "12+", label: "Business modules" },
-  { value: "100%", label: "Responsive delivery" },
-  { value: "Global", label: "Remote collaboration" },
+  { value: "120+", label: "Students mentored" },
+  { value: "15+", label: "Capstones supervised" },
 ];
+
+export const aboutContent = {
+  headline: "Engineering with clarity, not complexity.",
+  paragraphs: [
+    "I help businesses and product teams turn operational workflows into reliable web software — especially ERP, CRM, SRM, and ecommerce systems — using Laravel on the backend and React or Next.js on the frontend.",
+    "I focus on understandable architecture, strong access control, polished interfaces, and code that stays maintainable as the product grows. Open to full-stack roles and selected freelance projects.",
+  ],
+  traits: [
+    {
+      title: "Product-minded",
+      description:
+        "I connect technical decisions with user needs and business goals.",
+    },
+    {
+      title: "Detail-focused",
+      description:
+        "I refine edge cases, interactions, permissions, and visual consistency.",
+    },
+  ],
+};
 
 export const skillCategories = [
   {
@@ -57,8 +77,8 @@ export const experiences = [
   {
     role: "Full Stack Developer",
     company: "Eclipse Auto Parts ERP",
-    location: "Manchester, United Kingdom · Remote",
-    duration: "2025 — Present",
+    location: "Manchester, United Kingdom · Remote (contract)",
+    duration: "Jan 2025 — Present",
     highlights: [
       "Designed and expanded CRM, SRM, procurement, inventory, and account intelligence workflows.",
       "Implemented role-based permissions, approval workflows, reporting, and operational dashboards.",
@@ -68,8 +88,8 @@ export const experiences = [
   {
     role: "Full Stack Developer",
     company: "SquartUp",
-    location: "Remote",
-    duration: "July 2025 — Present",
+    location: "Remote (contract)",
+    duration: "Jul 2025 — Present",
     highlights: [
       "Architected a full-featured CRM & POS system with eCommerce, Account 360 View, and Churn Risk Detection.",
       "Built plug-and-play modules for Laradashboard — reusable architecture, backend logic, and React UI components.",
@@ -80,7 +100,7 @@ export const experiences = [
     role: "Lecturer (Computer Science)",
     company: "Royal University of Dhaka",
     location: "Dhaka, Bangladesh",
-    duration: "May 2022 — October 2025",
+    duration: "May 2022 — Oct 2025",
     highlights: [
       "Delivered undergraduate courses in Web Development, Software Engineering, and Programming Fundamentals.",
       "Mentored 120+ students in full-stack development, version control, and modern UI/UX principles.",
@@ -88,10 +108,10 @@ export const experiences = [
     ],
   },
   {
-    role: "Backend & API Development",
-    company: "Application Projects",
-    location: "Independent and academic development",
-    duration: "2024 — 2026",
+    role: "Independent Developer",
+    company: "Personal & academic projects",
+    location: "Independent development",
+    duration: "2024 — 2025",
     highlights: [
       "Built role-based job portal workflows for employers, applicants, and administrators.",
       "Developed a hospital management API with JWT authentication and permission-aware resources.",
@@ -111,6 +131,7 @@ export const projects = [
     live: "https://eclipseautoparts.com/",
     github: "",
     image: "/projects/eclipse-erp.png",
+    status: "live" as const,
   },
   {
     title: "Laradashboard Platform",
@@ -122,6 +143,7 @@ export const projects = [
     live: "https://laradashboard.com/",
     github: "https://github.com/laradashboard/laradashboard",
     image: "/projects/laradashboard.png",
+    status: "live" as const,
   },
   {
     title: "ChakriBazar Job Portal",
@@ -133,6 +155,7 @@ export const projects = [
     live: "",
     github: "",
     image: "/projects/chakribazar.png",
+    status: "private" as const,
   },
 ];
 

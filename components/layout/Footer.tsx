@@ -9,7 +9,14 @@ export default function Footer() {
         <p>
           © {year} {siteConfig.name}. Designed and developed with care.
         </p>
-        <div className="flex items-center gap-5">
+        <div className="flex flex-wrap items-center gap-5">
+          <a
+            href={siteConfig.resume}
+            download="Anik-Resume.pdf"
+            className="transition hover:text-slate-950 dark:hover:text-white"
+          >
+            Resume
+          </a>
           <a
             href={siteConfig.github}
             target="_blank"

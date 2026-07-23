@@ -36,8 +36,16 @@ export default function Projects() {
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => {
             const href = project.live || project.github;
+            const isPrivate = project.status === "private";
+
             const card = (
-              <div className="project-card group h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] dark:border-slate-800 dark:bg-slate-900">
+              <div
+                className={`project-card group h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 ${
+                  href
+                    ? "transition hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]"
+                    : ""
+                }`}
+              >
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
                   <Image
                     src={project.image}
@@ -46,6 +54,11 @@ export default function Projects() {
                     className="project-preview object-cover object-top transition duration-500"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
+                  {isPrivate && (
+                    <span className="absolute right-3 top-3 rounded-full border border-slate-200 bg-white/95 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600 backdrop-blur dark:border-slate-700 dark:bg-slate-900/95 dark:text-slate-300">
+                      In Progress
+                    </span>
+                  )}
                 </div>
                 <div className="p-5 sm:p-6">
                   <div className="flex items-start justify-between gap-3">
@@ -59,16 +72,24 @@ export default function Projects() {
                         {project.title}
                       </h3>
                     </div>
-                    <span
-                      className="project-arrow shrink-0 text-xl leading-none text-slate-400 transition-transform duration-300"
-                      aria-hidden
-                    >
-                      ↗
-                    </span>
+                    {href ? (
+                      <span
+                        className="project-arrow shrink-0 text-xl leading-none text-slate-400 transition-transform duration-300"
+                        aria-hidden
+                      >
+                        ↗
+                      </span>
+                    ) : null}
                   </div>
                   <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
                     {project.description}
                   </p>
+                  {isPrivate && (
+                    <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-500">
+                      Demo and source are private. Highlights available on
+                      request.
+                    </p>
+                  )}
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
                       <span
