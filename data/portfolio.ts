@@ -3,10 +3,11 @@ export const siteConfig = {
   fullName: "Md Asaduzzaman Anik",
   title: "Full Stack Developer",
   email: "asaduzzamananik12@gmail.com",
-  location: "Bangladesh · Available remotely",
+  location: "Dhaka, Bangladesh · Available remotely",
   github: "https://github.com/asaduzzaman-anik",
   linkedin: "https://www.linkedin.com/in/anik-asaduzzaman/",
   resume: "/resume.pdf",
+  url: "https://asaduzzaman-anik.github.io",
   description:
     "Full Stack Developer specializing in Laravel, React, and Next.js. I transform complex workflows into fast, scalable, and thoughtfully designed web applications.",
 };
