@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
+import { RedirectIcon } from "@/components/icons";
 import { projects } from "@/data/portfolio";
 
 const categoryColors: Record<string, string> = {
@@ -113,7 +114,7 @@ export default function Projects() {
                             className="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 transition hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300"
                           >
                             Live site
-                            <span aria-hidden>↗</span>
+                            <RedirectIcon />
                           </a>
                         ) : null}
                         {project.github ? (
@@ -124,7 +125,7 @@ export default function Projects() {
                             className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 transition hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
                           >
                             GitHub
-                            <span aria-hidden>↗</span>
+                            <RedirectIcon />
                           </a>
                         ) : null}
                       </div>

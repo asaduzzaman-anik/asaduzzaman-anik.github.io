@@ -49,7 +49,7 @@ export const aboutContent = {
 
 export const skillCategories = [
   {
-    icon: "L",
+    icon: "backend" as const,
     iconColor: "rose",
     title: "Backend Development",
     description:
@@ -57,7 +57,7 @@ export const skillCategories = [
     tags: ["Laravel", "PHP", "REST API", "MySQL", "Auth / RBAC"],
   },
   {
-    icon: "R",
+    icon: "frontend" as const,
     iconColor: "sky",
     title: "Frontend Engineering",
     description:
@@ -65,7 +65,7 @@ export const skillCategories = [
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Git"],
   },
   {
-    icon: "ui",
+    icon: "ui" as const,
     iconColor: "violet",
     title: "Product & UI Systems",
     description:
