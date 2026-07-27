@@ -14,6 +14,9 @@ export default function Reveal({ children, className = "" }: RevealProps) {
     const element = ref.current;
     if (!element) return;
 
+    // Hide for animation only after JS runs; keep content visible if the bundle fails to parse.
+    document.documentElement.classList.add("js-reveal");
+
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -22,6 +25,17 @@ export default function Reveal({ children, className = "" }: RevealProps) {
       element.classList.add("is-visible");
       return;
     }
+
+    const revealIfInView = () => {
+      const rect = element.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9) {
+        element.classList.add("is-visible");
+        return true;
+      }
+      return false;
+    };
+
+    if (revealIfInView()) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -36,7 +50,17 @@ export default function Reveal({ children, className = "" }: RevealProps) {
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
+
+    // Safety net: never leave content stuck invisible
+    const fallback = window.setTimeout(() => {
+      element.classList.add("is-visible");
+      observer.disconnect();
+    }, 2500);
+
+    return () => {
+      window.clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, []);
 
   return (

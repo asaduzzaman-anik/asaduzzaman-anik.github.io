@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 import Reveal from "@/components/ui/Reveal";
+import {
+  DownloadIcon,
+  MailIcon,
+  MapPinIcon,
+  SendIcon,
+} from "@/components/icons";
 import { siteConfig } from "@/data/portfolio";
 
 type FormState = {
@@ -109,33 +115,13 @@ export default function Contact() {
                   className="flex items-center gap-3 text-sm text-slate-600 transition hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400"
                 >
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 dark:bg-white/5">
-                    <svg
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      aria-hidden="true"
-                    >
-                      <path d="M4 4h16v16H4z" />
-                      <path d="m4 6 8 6 8-6" />
-                    </svg>
+                    <MailIcon />
                   </span>
                   {siteConfig.email}
                 </a>
                 <div className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-slate-100 dark:bg-white/5">
-                    <svg
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 21s6-5.5 6-11a6 6 0 1 0-12 0c0 5.5 6 11 6 11Z" />
-                      <circle cx="12" cy="10" r="2" />
-                    </svg>
+                    <MapPinIcon />
                   </span>
                   {siteConfig.location}
                 </div>
@@ -144,16 +130,7 @@ export default function Contact() {
                   download="Anik-Resume.pdf"
                   className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:text-white"
                 >
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14" />
-                  </svg>
+                  <DownloadIcon />
                   Download resume
                 </a>
               </div>
@@ -242,16 +219,7 @@ export default function Contact() {
                   className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
                 >
                   {loading ? "Sending..." : "Send message"}
-                  <svg
-                    className="h-4 w-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  >
-                    <path d="m22 2-7 20-4-9-9-4Z" />
-                    <path d="M22 2 11 13" />
-                  </svg>
+                  <SendIcon />
                 </button>
               </div>
 
