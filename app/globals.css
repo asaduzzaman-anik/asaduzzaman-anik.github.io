@@ -69,6 +69,12 @@ summary {
 }
 
 .reveal {
+  /* Visible by default so content still shows if client JS never runs */
+  opacity: 1;
+  transform: none;
+}
+
+html.js-reveal .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition:
@@ -76,7 +82,7 @@ summary {
     transform 700ms ease;
 }
 
-.reveal.is-visible {
+html.js-reveal .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -86,7 +92,8 @@ summary {
     scroll-behavior: auto;
   }
 
-  .reveal {
+  .reveal,
+  html.js-reveal .reveal {
     opacity: 1;
     transform: none;
     transition: none;

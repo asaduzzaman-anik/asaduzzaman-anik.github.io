@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { navLinks, siteConfig } from "@/data/portfolio";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import { CloseIcon, MenuIcon } from "@/components/icons";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -157,20 +158,7 @@ export default function Navbar() {
             aria-expanded={menuOpen}
             aria-controls={menuId}
           >
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              aria-hidden="true"
-            >
-              {menuOpen ? (
-                <path d="M6 6l12 12M18 6 6 18" />
-              ) : (
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              )}
-            </svg>
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
       </nav>
