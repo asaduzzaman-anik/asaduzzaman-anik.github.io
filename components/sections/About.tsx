@@ -11,7 +11,7 @@ export default function About() {
             <div className="absolute -inset-8 -z-10 rounded-full bg-indigo-500/10 blur-3xl" />
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-slate-200 shadow-[var(--shadow-soft)] dark:border-slate-800">
               <Image
-                src="/me.webp"
+                src={siteConfig.avatar}
                 alt={siteConfig.fullName}
                 fill
                 className="object-cover object-top"

@@ -4,6 +4,13 @@ const nextConfig: NextConfig = {
   output: "export",
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        pathname: "/u/**",
+      },
+    ],
   },
   trailingSlash: true,
   // Prevent Next from treating the parent "Web Developments" folder as the monorepo root
