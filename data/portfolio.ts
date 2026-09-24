@@ -5,6 +5,7 @@ export const siteConfig = {
   email: "asaduzzamananik12@gmail.com",
   location: "Dhaka, Bangladesh · Available remotely",
   github: "https://github.com/asaduzzaman-anik",
+  avatar: "https://avatars.githubusercontent.com/u/31627055?v=4",
   linkedin: "https://www.linkedin.com/in/anik-asaduzzaman/",
   resume: "/resume.pdf",
   url: "https://asaduzzaman-anik.github.io",
