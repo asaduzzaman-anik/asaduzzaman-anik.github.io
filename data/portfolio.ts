@@ -222,11 +222,11 @@ export const projects: Project[] = [
     category: "Business Management System",
     categoryColor: "indigo",
     description:
-      "Modular POS, ecommerce, and business management platform for an auto-parts business — finance, CRM, SRM, procurement, and inventory.",
+      "Modular POS, ecommerce, and business management platform for a UK auto-parts business — inventory, vehicle fitments, procurement, finance, and CRM.",
     tags: ["Laravel", "PHP", "MySQL", "React", "Inertia.js"],
     live: "https://eclipseautoparts.com/",
     github: "",
-    image: "/projects/eclipse-erp.png",
+    image: "/projects/eclipse-erp/dashboard.webp",
     status: "live",
     problem:
       "An auto-parts business was running sales, stores, suppliers, and customer relationships across fragmented tools. It needed connected POS, ecommerce, procurement, and CRM workflows in one platform, with clear permissions for different staff and businesses.",
@@ -238,7 +238,7 @@ export const projects: Project[] = [
     ],
     caseStudy: {
       overview:
-        "Eclipse Auto Parts is a production business management platform I build and maintain as a Full Stack Developer at SquartUp. It brings point of sale, ecommerce, finance, CRM, supplier relationships, procurement, and inventory into one modular Laravel application.",
+        "Eclipse Auto Parts is a production business management platform I build and maintain as a Full Stack Developer at SquartUp. It brings point of sale, ecommerce, inventory, a vehicle catalogue, procurement, finance, and CRM into one modular Laravel application that runs across the business's store and online locations.",
       type: "Professional · Client project (SquartUp)",
       timeline: "Jan 2025 — Present",
       responsibilities: [
@@ -251,31 +251,32 @@ export const projects: Project[] = [
         {
           title: "Point of sale & ecommerce",
           description:
-            "In-store sales and online orders on shared product and customer data, with WooCommerce integration.",
+            "In-store POS and online orders on shared product and customer data, with Stripe, PayPal, and Razorpay payments, WooCommerce integration, and sell returns.",
         },
         {
-          title: "Finance, CRM & SRM",
+          title: "Inventory & product catalogue",
           description:
-            "Finance, customer relationship, and supplier relationship features delivered as separate modules.",
+            "Products with variations, units, brands, bin locations, and warranties, plus label printing, opening-stock import, and stock adjustments.",
         },
         {
-          title: "Procurement & inventory",
+          title: "Vehicle catalogue & fitments",
           description:
-            "Purchasing and stock workflows connecting suppliers, stores, and sales.",
+            "A vehicle catalogue and per-product fitment settings, so parts can be matched to the vehicles they fit.",
         },
         {
-          title: "Account intelligence",
+          title: "Procurement",
           description:
-            "Account 360 view, churn-risk detection, and account health monitoring.",
+            "Purchase requests, purchase orders, receiving, and purchase returns, with order and payment status tracked per supplier.",
         },
         {
-          title: "Payments",
-          description: "Stripe, PayPal, and Razorpay payment integrations.",
-        },
-        {
-          title: "Reporting & dashboards",
+          title: "Finance",
           description:
-            "Analytics dashboards and PDF/Excel report exports for daily operations.",
+            "Finance dashboard with cash position, revenue, receivables, payables, and profit; expenses (including recurring), payment accounts, cash flow, and PDF/Excel reports.",
+        },
+        {
+          title: "CRM & account intelligence",
+          description:
+            "Contacts, inquiries, and CRM, plus an Account 360 view, churn-risk detection, and account health monitoring.",
         },
       ],
       highlights: [
@@ -283,6 +284,11 @@ export const projects: Project[] = [
           title: "Modular architecture",
           description:
             "Each business area — Finance, CRM, SRM, car management — lives in its own Laravel module, so features can be developed and maintained independently.",
+        },
+        {
+          title: "Location-aware operations",
+          description:
+            "Stock, sales, purchases, and finance figures are tracked per business location (store and ecommerce), and dashboards can be filtered by location or viewed across all of them.",
         },
         {
           title: "Scoped access control",
@@ -315,6 +321,42 @@ export const projects: Project[] = [
         {
           group: "Integrations",
           items: ["Stripe", "PayPal", "Razorpay", "WooCommerce", "Pusher"],
+        },
+      ],
+      gallery: [
+        {
+          src: "/projects/eclipse-erp/products.webp",
+          alt: "Product list with part numbers, locations, cost and sale prices, and stock status",
+          caption:
+            "Product catalogue — part numbers, locations, cost and sale prices, and stock status across the store and ecommerce.",
+        },
+        {
+          src: "/projects/eclipse-erp/product-form.webp",
+          alt: "Multi-step add product form with identification, media, pricing and inventory, and fitment steps",
+          caption:
+            "Multi-step product form — identification, media, pricing and inventory, then settings and vehicle fitments.",
+        },
+        {
+          src: "/projects/eclipse-erp/purchases.webp",
+          alt: "Purchases list with supplier, purchase status, payment status, and totals",
+          caption:
+            "Purchases — supplier orders with order and payment status, alongside requests, returns, and receiving.",
+        },
+        {
+          src: "/projects/eclipse-erp/finance-dashboard.webp",
+          alt: "Finance dashboard with cash position, revenue, expenses, receivables, payables, profit, and a cash flow chart",
+          caption:
+            "Finance dashboard — cash position, revenue, receivables, payables, profit, and cash flow by location.",
+        },
+        {
+          src: "/projects/eclipse-erp/sell-returns.webp",
+          alt: "Sell returns list linking each return to its parent sale with payment status and amount due",
+          caption: "Sell returns — linked to the original sale, with payment status and amount due.",
+        },
+        {
+          src: "/projects/eclipse-erp/dashboard-dark.webp",
+          alt: "Main dashboard in dark mode with purchase, sales, and invoice totals and a sales chart",
+          caption: "Full dark mode across the admin.",
         },
       ],
     },
