@@ -1,7 +1,10 @@
+"use client";
+
+import { useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import { RedirectIcon } from "@/components/icons";
-import { projects, siteConfig } from "@/data/portfolio";
+import { projects, projectStacks, siteConfig } from "@/data/portfolio";
 
 const categoryColors: Record<string, string> = {
   indigo: "text-indigo-600 dark:text-indigo-400",
@@ -11,7 +14,74 @@ const categoryColors: Record<string, string> = {
   rose: "text-rose-600 dark:text-rose-400",
 };
 
+type StackFilter = (typeof projectStacks)[number]["id"];
+
+// The active tab lives in the URL (?stack=django) so filtered views can be
+// shared as links. The page prerenders with "all" and syncs after hydration.
+const STACK_CHANGE_EVENT = "projectstackchange";
+
+function readStack(): StackFilter {
+  const value = new URLSearchParams(window.location.search).get("stack");
+  return projectStacks.find((stack) => stack.id === value)?.id ?? "all";
+}
+
+function subscribeToStack(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  window.addEventListener(STACK_CHANGE_EVENT, onChange);
+  return () => {
+    window.removeEventListener("popstate", onChange);
+    window.removeEventListener(STACK_CHANGE_EVENT, onChange);
+  };
+}
+
+function selectStack(stack: StackFilter) {
+  const url = new URL(window.location.href);
+  if (stack === "all") {
+    url.searchParams.delete("stack");
+  } else {
+    url.searchParams.set("stack", stack);
+  }
+  window.history.replaceState(null, "", url);
+  window.dispatchEvent(new Event(STACK_CHANGE_EVENT));
+}
+
 export default function Projects() {
+  const activeStack = useSyncExternalStore(
+    subscribeToStack,
+    readStack,
+    () => "all" as const,
+  );
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const visibleProjects =
+    activeStack === "all"
+      ? projects
+      : projects.filter((project) => project.stack === activeStack);
+
+  const countFor = (stack: StackFilter) =>
+    stack === "all"
+      ? projects.length
+      : projects.filter((project) => project.stack === stack).length;
+
+  const onTabKeyDown = (event: React.KeyboardEvent, index: number) => {
+    const last = projectStacks.length - 1;
+    const next =
+      event.key === "ArrowRight"
+        ? index === last ? 0 : index + 1
+        : event.key === "ArrowLeft"
+          ? index === 0 ? last : index - 1
+          : event.key === "Home"
+            ? 0
+            : event.key === "End"
+              ? last
+              : null;
+
+    if (next === null) return;
+    event.preventDefault();
+    selectStack(projectStacks[next].id);
+    tabRefs.current[next]?.focus();
+  };
+
   return (
     <section
       id="projects"
@@ -35,8 +105,54 @@ export default function Projects() {
           </a>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {projects.map((project) => {
+        <div
+          role="tablist"
+          aria-label="Filter projects by backend stack"
+          className="mt-12 inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white/70 p-1 dark:border-slate-700 dark:bg-slate-900/70"
+        >
+          {projectStacks.map((stack, index) => {
+            const isActive = activeStack === stack.id;
+
+            return (
+              <button
+                key={stack.id}
+                ref={(el) => {
+                  tabRefs.current[index] = el;
+                }}
+                id={`projects-tab-${stack.id}`}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-controls="projects-panel"
+                tabIndex={isActive ? 0 : -1}
+                onClick={() => selectStack(stack.id)}
+                onKeyDown={(event) => onTabKeyDown(event, index)}
+                className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
+                    : "text-slate-600 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white"
+                }`}
+              >
+                {stack.label}
+                <span
+                  className={`ml-1.5 text-xs ${
+                    isActive ? "opacity-70" : "text-slate-400 dark:text-slate-500"
+                  }`}
+                >
+                  {countFor(stack.id)}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div
+          id="projects-panel"
+          role="tabpanel"
+          aria-labelledby={`projects-tab-${activeStack}`}
+          className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3"
+        >
+          {visibleProjects.map((project) => {
             const isPrivate = project.status === "private";
             const hasLinks = Boolean(project.live || project.github);
 
@@ -171,7 +287,10 @@ export default function Projects() {
             );
           })}
 
-          <Reveal className="h-full">
+          {/* On the 3-column grid, only show this card when it fills a gap in the last row. */}
+          <Reveal
+            className={`h-full ${visibleProjects.length % 3 === 0 ? "lg:hidden" : ""}`}
+          >
             <a
               href={siteConfig.github}
               target="_blank"

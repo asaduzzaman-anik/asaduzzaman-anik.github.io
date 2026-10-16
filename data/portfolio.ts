@@ -170,9 +170,18 @@ export const experiences = [
 
 type ProjectStatus = "live" | "private" | "source";
 
+export const projectStacks = [
+  { id: "all", label: "All" },
+  { id: "django", label: "Django" },
+  { id: "laravel", label: "Laravel" },
+] as const;
+
+export type ProjectStack = Exclude<(typeof projectStacks)[number]["id"], "all">;
+
 export const projects = [
   {
     title: "Eclipse Auto Parts ERP",
+    stack: "laravel" as ProjectStack,
     category: "Business Management System",
     categoryColor: "indigo",
     description:
@@ -193,6 +202,7 @@ export const projects = [
   },
   {
     title: "Laradashboard Platform",
+    stack: "laravel" as ProjectStack,
     category: "CMS & admin platform",
     categoryColor: "violet",
     description:
@@ -213,6 +223,7 @@ export const projects = [
   },
   {
     title: "Django Inventory Management System",
+    stack: "django" as ProjectStack,
     category: "Inventory Management System",
     categoryColor: "sky",
     description:
@@ -233,6 +244,7 @@ export const projects = [
   },
   {
     title: "ChakriBazar Job Portal",
+    stack: "laravel" as ProjectStack,
     category: "Marketplace platform",
     categoryColor: "emerald",
     description:
@@ -253,6 +265,7 @@ export const projects = [
   },
   {
     title: "Hospital Management System",
+    stack: "django" as ProjectStack,
     category: "Healthcare management",
     categoryColor: "rose",
     description:
