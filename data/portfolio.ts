@@ -140,6 +140,7 @@ export const experiences = [
       "Implemented role-based permissions, approval workflows, reporting, operational dashboards, and account health analytics (Account 360, churn risk, health monitoring).",
       "Built scheduled backend jobs for daily customer analysis pipelines, reducing manual reporting effort.",
       "Developed reusable Laradashboard modules — Eloquent models, database schemas, backend services, and React UI components for plug-and-play features.",
+      "Hardened security in Laradashboard, an open-source Laravel admin panel with 400+ stars — fixing privilege escalation, role tampering, open redirect, path traversal, and secret-exposure vulnerabilities shipped in releases v1.4.5 to v1.4.7.",
       "Collaborated remotely with clients to translate business requirements into scalable, maintainable APIs and codebases (Laravel/PHP in production).",
     ],
   },
@@ -168,7 +169,7 @@ export const experiences = [
   },
 ];
 
-type ProjectStatus = "live" | "private" | "source";
+export type ProjectStatus = "live" | "private" | "source";
 
 export const projectStacks = [
   { id: "all", label: "All" },
@@ -178,111 +179,642 @@ export const projectStacks = [
 
 export type ProjectStack = Exclude<(typeof projectStacks)[number]["id"], "all">;
 
-export const projects = [
+export type ProjectLink = { label: string; url: string };
+
+export type CaseStudy = {
+  overview: string;
+  type: string;
+  timeline: string;
+  responsibilities: string[];
+  features: { title: string; description: string }[];
+  highlights: { title: string; description: string }[];
+  stack: { group: string; items: string[] }[];
+  extraLinks?: ProjectLink[];
+  /** Optional screenshots shown in the "Screens" section (16:10 images). */
+  gallery?: { src: string; alt: string; caption: string }[];
+};
+
+export type Project = {
+  slug: string;
+  title: string;
+  stack: ProjectStack;
+  category: string;
+  categoryColor: string;
+  /** Short summary shown on the project card. */
+  description: string;
+  tags: string[];
+  live: string;
+  github: string;
+  githubLabel?: string;
+  image: string;
+  status: ProjectStatus;
+  problem: string;
+  role: string;
+  outcomes: string[];
+  caseStudy: CaseStudy;
+};
+
+export const projects: Project[] = [
   {
+    slug: "eclipse-auto-parts-erp",
     title: "Eclipse Auto Parts ERP",
-    stack: "laravel" as ProjectStack,
+    stack: "laravel",
     category: "Business Management System",
     categoryColor: "indigo",
     description:
-      "A modular POS, ecommerce, and business management platform covering finance, CRM, SRM, procurement, inventory, and reporting.",
+      "Modular POS, ecommerce, and business management platform for an auto-parts business — finance, CRM, SRM, procurement, and inventory.",
     tags: ["Laravel", "PHP", "MySQL", "React", "Inertia.js"],
     live: "https://eclipseautoparts.com/",
     github: "",
     image: "/projects/eclipse-erp.png",
-    status: "live" as ProjectStatus,
+    status: "live",
     problem:
-      "An auto-parts business needed connected POS, ecommerce, procurement, and CRM workflows instead of fragmented tools.",
-    role: "Full Stack Developer (SquartUp) — modules, permissions, and integrations",
+      "An auto-parts business was running sales, stores, suppliers, and customer relationships across fragmented tools. It needed connected POS, ecommerce, procurement, and CRM workflows in one platform, with clear permissions for different staff and businesses.",
+    role: "Full Stack Developer at SquartUp — backend modules, permissions, integrations, and UI",
     outcomes: [
-      "Built modular Finance, CRM, SRM, procurement, inventory, and car-management features with Laravel Modules.",
-      "Implemented RBAC, activity logging, multi-business access control, and Account 360 / churn-risk analytics.",
-      "Integrated Stripe, PayPal, Razorpay, WooCommerce, and Pusher notifications; delivered dashboards and PDF/Excel reports.",
+      "Connected POS, ecommerce, procurement, and CRM workflows in one modular platform running in production.",
+      "Reduced manual reporting effort through automated daily customer analysis.",
+      "Improved usability across dense data tables and operational screens used daily by staff.",
     ],
+    caseStudy: {
+      overview:
+        "Eclipse Auto Parts is a production business management platform I build and maintain as a Full Stack Developer at SquartUp. It brings point of sale, ecommerce, finance, CRM, supplier relationships, procurement, and inventory into one modular Laravel application.",
+      type: "Professional · Client project (SquartUp)",
+      timeline: "Jan 2025 — Present",
+      responsibilities: [
+        "Designed relational data models and backend workflows for the CRM, POS, and ecommerce modules.",
+        "Built role-aware workflows, approval flows, activity logging, and multi-business access control.",
+        "Implemented scheduled daily customer-analysis jobs that reduce manual reporting effort.",
+        "Worked remotely with the client to translate business requirements into maintainable modules.",
+      ],
+      features: [
+        {
+          title: "Point of sale & ecommerce",
+          description:
+            "In-store sales and online orders on shared product and customer data, with WooCommerce integration.",
+        },
+        {
+          title: "Finance, CRM & SRM",
+          description:
+            "Finance, customer relationship, and supplier relationship features delivered as separate modules.",
+        },
+        {
+          title: "Procurement & inventory",
+          description:
+            "Purchasing and stock workflows connecting suppliers, stores, and sales.",
+        },
+        {
+          title: "Account intelligence",
+          description:
+            "Account 360 view, churn-risk detection, and account health monitoring.",
+        },
+        {
+          title: "Payments",
+          description: "Stripe, PayPal, and Razorpay payment integrations.",
+        },
+        {
+          title: "Reporting & dashboards",
+          description:
+            "Analytics dashboards and PDF/Excel report exports for daily operations.",
+        },
+      ],
+      highlights: [
+        {
+          title: "Modular architecture",
+          description:
+            "Each business area — Finance, CRM, SRM, car management — lives in its own Laravel module, so features can be developed and maintained independently.",
+        },
+        {
+          title: "Scoped access control",
+          description:
+            "Role-based permissions, approval workflows, activity logging, and multi-business access control keep each team's data and actions scoped.",
+        },
+        {
+          title: "Scheduled analysis pipelines",
+          description:
+            "Daily customer analysis runs on Laravel Scheduler, supporting the account health and churn-risk insights.",
+        },
+        {
+          title: "Real-time and third-party integrations",
+          description:
+            "Pusher delivers real-time notifications alongside the payment gateway and WooCommerce integrations.",
+        },
+        {
+          title: "React through Inertia.js",
+          description:
+            "Interactive screens use React via Inertia.js, keeping Laravel routing and controllers while delivering a modern UI.",
+        },
+      ],
+      stack: [
+        {
+          group: "Backend",
+          items: ["Laravel", "PHP", "Eloquent ORM", "Laravel Modules", "Laravel Scheduler"],
+        },
+        { group: "Frontend", items: ["React", "Inertia.js"] },
+        { group: "Database", items: ["MySQL"] },
+        {
+          group: "Integrations",
+          items: ["Stripe", "PayPal", "Razorpay", "WooCommerce", "Pusher"],
+        },
+      ],
+    },
   },
   {
+    slug: "laradashboard",
     title: "Laradashboard Platform",
-    stack: "laravel" as ProjectStack,
+    stack: "laravel",
     category: "CMS & admin platform",
     categoryColor: "violet",
     description:
-      "Laravel CMS and admin panel with plug-and-play modules, granular RBAC, and reusable UI components.",
-    tags: ["Laravel", "PHP", "Livewire", "React", "MySQL"],
+      "Open-source Laravel admin panel, CMS, and modular starter kit with 400+ GitHub stars, where I'm a core contributor.",
+    tags: ["Laravel", "PHP", "Livewire", "REST API", "Tailwind CSS"],
     live: "https://laradashboard.com/",
     github: "https://github.com/laradashboard/laradashboard",
-    image: "/projects/laradashboard.png",
-    status: "live" as ProjectStatus,
+    image: "/projects/laradashboard/dashboard-light.png",
+    status: "live",
     problem:
-      "Teams needed a reusable Laravel admin foundation instead of rebuilding auth, permissions, and modules for every product.",
-    role: "Full Stack Developer — module architecture, RBAC, and UI components",
+      "Teams kept rebuilding the same foundations — authentication, roles and permissions, user management, content, and admin screens — for every new product. Laradashboard packages them into one open-source platform, and as its user base grows, every module, role, and upload path has to stay secure by default.",
+    role: "Core contributor (SquartUp) — security hardening, platform features, modules, and releases",
     outcomes: [
-      "Built plug-and-play modules with nwidart/laravel-modules, including reusable CRUD generators.",
-      "Implemented RBAC with Spatie Permissions — role assignment, authorization policies, and admin impersonation.",
-      "Developed backend services, database schemas, and React UI components on a Laravel 13 + Livewire stack.",
+      "Closed a series of authorization and input-handling vulnerabilities, shipped in releases v1.4.5 to v1.4.7.",
+      "Improved every list screen in the admin through changes to one shared datatable component.",
+      "77 commits to an open-source project with 400+ stars and 160+ forks.",
+      "Delivered reusable modules and UI components for plug-and-play feature development across dashboard applications.",
     ],
+    caseStudy: {
+      overview:
+        "Lara Dashboard is an open-source Laravel admin panel, CMS, and modular starter kit built on Laravel 13, Livewire 3, and Tailwind CSS v4. As part of my work at SquartUp, I'm one of its core contributors — shipping security hardening, datatable and editor improvements, MCP media uploads, modules, and releases.",
+      type: "Professional · Open source (SquartUp)",
+      timeline: "2025 — Present",
+      responsibilities: [
+        "Hardened authorization: blocked Superadmin impersonation and privilege escalation, Superadmin role tampering, and a post publish-approval bypass.",
+        "Fixed input and file-handling vulnerabilities: an open redirect (CWE-601), path traversal in backup and translation routes, secrets exposed through the settings API, unsafe SVG uploads, and a registration rate-limit race.",
+        "Reworked the shared datatable component: one unified page scroll, column visibility on every table, post and page view counts, and responsive toolbars on small screens.",
+        "Added multipart media uploads to the built-in MCP server, with upload verification and limits that reject corrupted or oversized files.",
+        "Stabilised the block editor's Text Editor and list blocks, fixed module CRUD generator edge cases, and prepared releases v1.2.1 and v1.4.5 to v1.4.7.",
+        "Developed plug-and-play modules, backend services, and UI components for products built on the platform.",
+      ],
+      features: [
+        {
+          title: "Role-based access control",
+          description:
+            "Users, roles, and permissions via Spatie, with admin impersonation and social login.",
+        },
+        {
+          title: "Modules & CRUD generator",
+          description:
+            "Self-contained modules that can be installed, enabled, disabled, and zipped; one command scaffolds a full CRUD module with tests.",
+        },
+        {
+          title: "Content management",
+          description:
+            "Posts, pages, categories, tags, a media library, and a drag-and-drop block editor.",
+        },
+        {
+          title: "REST API",
+          description:
+            "Sanctum-authenticated API with documentation generated automatically by Scramble.",
+        },
+        {
+          title: "MCP server for AI agents",
+          description:
+            "Lets Cursor, Claude Desktop, or Claude Code manage the site with token-based, permission-scoped access.",
+        },
+        {
+          title: "Settings, i18n & monitoring",
+          description:
+            "Site settings, 21 preloaded languages, email templates, action logs, and Laravel Pulse monitoring.",
+        },
+      ],
+      highlights: [
+        {
+          title: "Protecting the most privileged role",
+          description:
+            "Superadmin is guarded everywhere it can be reached: impersonation, role edits, user create/update requests, Livewire module actions, and core-upgrade actions.",
+        },
+        {
+          title: "Never trusting client input for authorization",
+          description:
+            "Publish status is decided on the server, the settings API no longer returns secrets to view-only users, and the translation route can't read files outside the language directory.",
+        },
+        {
+          title: "Defensive file handling",
+          description:
+            "SVG uploads are hardened, backup paths are checked for traversal, and MCP base64 uploads are size-capped before decoding to prevent memory exhaustion.",
+        },
+        {
+          title: "One component, every list screen",
+          description:
+            "Scrolling, column visibility, and responsive behaviour live in the shared datatable, so a single change improves every admin table.",
+        },
+        {
+          title: "Quality gates in CI",
+          description:
+            "Pest tests, PHPStan (Larastan), Rector, and Pint; I fixed PHPStan errors blocking CI and isolated tests so security tests can't wipe real media.",
+        },
+      ],
+      stack: [
+        {
+          group: "Backend",
+          items: ["Laravel 13", "PHP 8.3", "Livewire 3", "Spatie Permissions", "laravel-modules", "Sanctum"],
+        },
+        {
+          group: "Frontend",
+          items: ["Blade", "Alpine.js", "Tailwind CSS v4", "React"],
+        },
+        { group: "Database", items: ["MySQL"] },
+        {
+          group: "Quality & tooling",
+          items: ["Pest", "PHPStan", "Rector", "Pint", "Scramble"],
+        },
+      ],
+      gallery: [
+        {
+          src: "/projects/laradashboard/posts-datatable.png",
+          alt: "Posts list in the admin datatable with search, status, tag, and category filters",
+          caption:
+            "The shared datatable behind every list screen — I reworked its scrolling, column visibility, and small-screen toolbar.",
+        },
+        {
+          src: "/projects/laradashboard/roles.png",
+          alt: "Roles list showing each role's user count and assigned permissions",
+          caption:
+            "Roles and permissions — the RBAC layer where I closed privilege-escalation and role-tampering paths.",
+        },
+        {
+          src: "/projects/laradashboard/block-editor.png",
+          alt: "Drag-and-drop block editor with a block library, canvas, and properties panel",
+          caption:
+            "The block editor — I stabilised the Text Editor and list blocks and restored native undo.",
+        },
+        {
+          src: "/projects/laradashboard/modules.png",
+          alt: "Modules list with descriptions, tags, versions, and enabled or disabled status",
+          caption: "Module management — install, enable, and disable self-contained modules.",
+        },
+        {
+          src: "/projects/laradashboard/api-docs.png",
+          alt: "Auto-generated REST API documentation with endpoint groups and bearer authentication",
+          caption: "Auto-generated REST API documentation with bearer-token authentication.",
+        },
+        {
+          src: "/projects/laradashboard/action-logs.png",
+          alt: "Action log list recording created and updated records and who performed each action",
+          caption: "Action logs — an audit trail of who changed what across the platform.",
+        },
+      ],
+    },
   },
   {
+    slug: "django-inventory-management",
     title: "Django Inventory Management System",
-    stack: "django" as ProjectStack,
+    stack: "django",
     category: "Inventory Management System",
     categoryColor: "sky",
     description:
-      "Multi-warehouse inventory and warehouse management system with a Django REST API and a React admin UI.",
+      "Multi-warehouse inventory system with an immutable stock ledger, a Django REST API, and a React + TypeScript admin UI.",
     tags: ["Python", "Django", "DRF", "React", "TypeScript", "MySQL"],
     live: "",
     github: "https://github.com/asaduzzaman-anik/django-inventory-management",
-    image: "",
-    status: "source" as ProjectStatus,
+    image: "/projects/django-inventory/dashboard.png",
+    status: "source",
     problem:
-      "Multi-warehouse inventory software built with Django and Django REST Framework — purchasing, sales, transfers, adjustments, and reporting behind a JWT-secured API with a React + TypeScript admin UI.",
+      "Inventory spread across several warehouses needs stock numbers that can be trusted: every movement auditable, no overselling when receipts and sales happen at the same time, and staff limited to the warehouses they are responsible for.",
     role: "Full Stack Developer — Django REST API, data model, and React frontend",
     outcomes: [
-      "Modelled stock as an immutable ledger plus balance tables updated in transaction.atomic, with select_for_update locking to prevent overselling.",
-      "Built purchase orders, sales (reserve → complete), transfers, adjustments, and CSV/Excel reports across multiple warehouses.",
-      "Implemented SimpleJWT with five roles and fail-closed warehouse scoping, Celery + Redis alerts and caching, and pytest/Vitest coverage.",
+      "The stock ledger always reconciles: for every product and warehouse, the sum of ledger movements equals on-hand stock.",
+      "Critical paths are tested with pytest, including concurrency races and role/permission boundaries, plus Vitest on the React client.",
+      "The API is documented with Swagger UI and an OpenAPI schema.",
     ],
+    caseStudy: {
+      overview:
+        "A production-style multi-warehouse inventory and warehouse management system. A Django REST Framework API handles purchasing, sales, transfers, adjustments, and reporting, and a React + TypeScript admin SPA consumes it.",
+      type: "Personal project",
+      timeline: "2026",
+      responsibilities: [
+        "Designed the stock data model, ledger, and transactional service workflows in Django.",
+        "Built the versioned REST API with Django REST Framework, SimpleJWT, and drf-spectacular docs.",
+        "Built the React 19 + TypeScript admin SPA with TanStack Query, Tailwind CSS, and Recharts.",
+        "Set up Celery workers and beat, Docker Compose, and the pytest and Vitest test suites.",
+      ],
+      features: [
+        {
+          title: "Multi-warehouse stock",
+          description:
+            "On-hand and reserved quantities per product and warehouse, plus a dashboard with stock value, daily movement, and sales vs. purchases charts.",
+        },
+        {
+          title: "Purchasing",
+          description:
+            "Purchase orders that are created, submitted, approved, and received into stock.",
+        },
+        {
+          title: "Sales orders",
+          description:
+            "Orders reserve stock when confirmed and deduct it on completion, with payment status and line-level returns.",
+        },
+        {
+          title: "Transfers & adjustments",
+          description:
+            "Move stock between warehouses and correct counts, with every change recorded.",
+        },
+        {
+          title: "Reports & exports",
+          description:
+            "Inventory and movement reports with CSV/Excel export for permitted roles.",
+        },
+        {
+          title: "Administration",
+          description:
+            "Users, roles, warehouse assignments, and an audit log.",
+        },
+      ],
+      highlights: [
+        {
+          title: "Immutable stock ledger",
+          description:
+            "Every physical movement writes a ledger row with quantity_change and balance_after inside the same transaction.atomic block as the balance update.",
+        },
+        {
+          title: "Concurrency-safe updates",
+          description:
+            "select_for_update row locking on stock balances prevents overselling when receipts and sales run at the same time.",
+        },
+        {
+          title: "Reservations kept off the ledger",
+          description:
+            "Reserved quantity lives on the sales order until it completes or is cancelled, so holds never corrupt ledger history.",
+        },
+        {
+          title: "Fail-closed warehouse scoping",
+          description:
+            "Five Django group roles plus custom DRF permissions; a user without a warehouse assignment has no warehouse access.",
+        },
+        {
+          title: "Background jobs and caching",
+          description:
+            "Celery and Redis handle stock alerts, email, an hourly low-stock scan, and dashboard caching.",
+        },
+        {
+          title: "Production-minded configuration",
+          description:
+            "Separate dev and prod settings, Gunicorn, Docker Compose, and prod checks that refuse unsafe settings such as DEBUG=True.",
+        },
+      ],
+      stack: [
+        {
+          group: "Backend",
+          items: ["Python", "Django 5.2", "Django REST Framework", "SimpleJWT", "drf-spectacular", "Celery"],
+        },
+        {
+          group: "Frontend",
+          items: ["React 19", "TypeScript", "Vite", "TanStack Query", "Tailwind CSS", "Recharts"],
+        },
+        { group: "Data", items: ["MySQL 8", "Redis"] },
+        {
+          group: "Testing & ops",
+          items: ["pytest", "Vitest", "Docker Compose", "Gunicorn"],
+        },
+      ],
+      gallery: [
+        {
+          src: "/projects/django-inventory/stock-levels.png",
+          alt: "Inventory stock levels table listing on-hand, reserved, and available quantities per warehouse",
+          caption:
+            "Stock levels — on-hand, reserved, and available per warehouse, with receive, transfer, and adjust actions.",
+        },
+        {
+          src: "/projects/django-inventory/transaction-ledger.png",
+          alt: "Transaction history table showing stock movements with change, running balance, and source document",
+          caption:
+            "Transaction ledger — every movement with its quantity change, running balance, and source document.",
+        },
+        {
+          src: "/projects/django-inventory/purchase-order.png",
+          alt: "Purchase order detail page with ordered and received quantities and a linked goods receipt",
+          caption:
+            "Purchase order — ordered vs. received quantities, with goods receipts linked to the order.",
+        },
+        {
+          src: "/projects/django-inventory/sales-order.png",
+          alt: "Sales order detail page with totals, payment status, line items, and returns",
+          caption: "Sales order — totals, payment status, line items, and returns.",
+        },
+        {
+          src: "/projects/django-inventory/inventory-report.png",
+          alt: "Inventory report with warehouse, category, and status filters and CSV and Excel export buttons",
+          caption:
+            "Inventory report — filter by warehouse, category, and status; export to CSV or Excel.",
+        },
+        {
+          src: "/projects/django-inventory/transfer-stock.png",
+          alt: "Transfer stock form with source and destination warehouse, product, and quantity fields",
+          caption:
+            "Stock transfer — move stock between warehouses, reviewed before it is applied.",
+        },
+      ],
+    },
   },
   {
+    slug: "chakribazar",
     title: "ChakriBazar Job Portal",
-    stack: "laravel" as ProjectStack,
+    stack: "laravel",
     category: "Marketplace platform",
     categoryColor: "emerald",
     description:
-      "A role-based recruitment platform where applicants find opportunities, employers manage hiring, and admins oversee moderation.",
+      "Role-based job marketplace for Bangladesh with separate portals for applicants, employers, and admins, and a full hiring pipeline.",
     tags: ["Laravel", "PHP", "Blade", "Tailwind CSS", "Pest"],
     live: "",
     github: "https://github.com/asaduzzaman-anik/chakri-bazar",
     image: "/projects/chakribazar.png",
-    status: "source" as ProjectStatus,
+    status: "source",
     problem:
-      "Recruitment needed separate, permission-aware flows for applicants, employers, and administrators.",
+      "Recruitment involves three groups with very different needs: applicants searching and applying, employers managing a hiring pipeline, and admins keeping the marketplace healthy. Each needed its own permission-aware portal.",
     role: "Full Stack Developer — role workflows, hiring pipeline, and UI",
     outcomes: [
-      "Built dedicated dashboards for applicants, employers, and admins, with applicant tracking for applications, saved jobs, resume uploads, and hiring statuses.",
-      "Developed job search filters (keyword, location, category, experience, job type) plus moderation, approval, and admin reporting.",
-      "Added queued email notifications, email verification, middleware authorization, and Pest feature tests.",
+      "A complete hiring flow, from job posting and moderation to application and hire.",
+      "Three distinct portals sharing one codebase, with role-scoped access.",
+      "Automated feature tests with Pest, plus consistent code style through Laravel Pint.",
     ],
+    caseStudy: {
+      overview:
+        "ChakriBazar — chakri means \"job\" in Bengali — is a full-stack job board built for the Bangladesh job market, with BDT salaries, local cities, and real hiring workflows.",
+      type: "Personal project",
+      timeline: "2026",
+      responsibilities: [
+        "Designed the domain model: users, companies, categories, job listings, applications, applicant profiles, and saved jobs.",
+        "Built session authentication with role middleware, email verification, and password recovery.",
+        "Built the Blade and Tailwind CSS interfaces for all three portals and the public job board.",
+        "Wrote Pest feature tests and set up Laravel Pint, Commitlint, and Husky.",
+      ],
+      features: [
+        {
+          title: "Applicant portal",
+          description:
+            "Profile with skills, education, experience, and resume; one-step apply; saved jobs; application history.",
+        },
+        {
+          title: "Employer portal",
+          description:
+            "Company profile, rich-text job posts, and an applicant pipeline: Applied → Shortlisted → Rejected → Hired.",
+        },
+        {
+          title: "Admin portal",
+          description:
+            "Platform stats, user and role management, category management, a moderation queue, and reports.",
+        },
+        {
+          title: "Job search",
+          description:
+            "Filter by keyword, location, category, experience level, and job type, with SEO-friendly slugs.",
+        },
+        {
+          title: "Email notifications",
+          description:
+            "Emails when someone applies to a listing or an application's status changes.",
+        },
+      ],
+      highlights: [
+        {
+          title: "Role-gated portals",
+          description:
+            "A role middleware gates each portal's routes, with a tailored dashboard for each role.",
+        },
+        {
+          title: "Moderation by default",
+          description:
+            "New job posts start as pending and go live only after admin approval.",
+        },
+        {
+          title: "Form Request validation",
+          description:
+            "Form Request classes keep validation rules out of the controllers.",
+        },
+        {
+          title: "Queued notifications",
+          description:
+            "Laravel queues send application and status emails asynchronously.",
+        },
+        {
+          title: "Duplicate-safe applications",
+          description:
+            "Applicants apply with their saved resume, and duplicate applications are blocked.",
+        },
+      ],
+      stack: [
+        {
+          group: "Backend",
+          items: ["Laravel 13", "PHP 8.3", "Eloquent ORM", "Laravel queues"],
+        },
+        {
+          group: "Frontend",
+          items: ["Blade", "Tailwind CSS v4", "Vite", "TinyMCE"],
+        },
+        { group: "Database", items: ["SQLite (MySQL-ready)"] },
+        {
+          group: "Quality",
+          items: ["Pest", "Laravel Pint", "Commitlint", "Husky"],
+        },
+      ],
+    },
   },
   {
+    slug: "hospital-management-system",
     title: "Hospital Management System",
-    stack: "django" as ProjectStack,
+    stack: "django",
     category: "Healthcare management",
     categoryColor: "rose",
     description:
-      "Role-based hospital management platform with a decoupled Django REST API and React frontend.",
+      "Decoupled Django REST API and React app for hospital operations, with JWT auth and role-based access for four user types.",
     tags: ["Django", "DRF", "React", "JWT", "SQLite"],
     live: "",
     github: "https://github.com/asaduzzaman-anik/Hospital-Management-API",
+    githubLabel: "API repo",
     image: "",
-    status: "source" as ProjectStatus,
+    status: "source",
     problem:
-      "A decoupled Django REST API and React frontend for departments, doctors, patients, appointments, prescriptions, and billing.",
+      "Hospital workflows involve four kinds of users — admins, receptionists, doctors, and patients — who each need different access to departments, appointments, prescriptions, medicines, and billing.",
     role: "Full Stack Developer — REST API, permissions, and React UI",
     outcomes: [
-      "Implemented JWT authentication and RBAC for Admin, Doctor, Receptionist, and Patient roles.",
-      "Modelled the appointment lifecycle (pending, approved, completed, cancelled) with API-level validation.",
-      "Built searchable, filterable, paginated endpoints with django-filter, consumed by a React 19 UI.",
+      "A clean separation between API and frontend, with CORS configured for the React client.",
+      "Role-specific workflows and business rules enforced by the API rather than only in the UI.",
     ],
+    caseStudy: {
+      overview:
+        "A full-stack hospital management system with a decoupled architecture: a Django REST Framework API and a separate React single-page app that consumes it.",
+      type: "Personal project",
+      timeline: "2026",
+      extraLinks: [
+        {
+          label: "Frontend repo",
+          url: "https://github.com/asaduzzaman-anik/hospital-management-frontend-react",
+        },
+      ],
+      responsibilities: [
+        "Designed the domain modules and REST API with Django REST Framework and SimpleJWT.",
+        "Implemented role-based permissions for Admin, Doctor, Receptionist, and Patient users.",
+        "Built the React 19 frontend with React Router, Axios, and Tailwind CSS.",
+      ],
+      features: [
+        {
+          title: "Departments & doctors",
+          description:
+            "Departments plus doctor profiles with specializations, experience, and availability.",
+        },
+        {
+          title: "Patients",
+          description:
+            "Patients manage their own profiles; admins and receptionists manage all patient records.",
+        },
+        {
+          title: "Appointments",
+          description:
+            "Scheduling with pending, approved, completed, and cancelled states.",
+        },
+        {
+          title: "Prescriptions",
+          description:
+            "Doctors write prescriptions with diagnoses and medicine dosages once an appointment is completed.",
+        },
+        {
+          title: "Medicines & billing",
+          description: "A medicine inventory for prescriptions, and patient billing.",
+        },
+      ],
+      highlights: [
+        {
+          title: "JWT authentication with RBAC",
+          description:
+            "SimpleJWT access and refresh tokens, with DRF permissions defined per role.",
+        },
+        {
+          title: "Business rules in the API",
+          description:
+            "Appointment status transitions and prescription rules are validated at the serializer and API level.",
+        },
+        {
+          title: "Search, filtering, and pagination",
+          description:
+            "DRF ViewSets with django-filter, search, ordering, and page-number pagination.",
+        },
+        {
+          title: "Role-aware React client",
+          description:
+            "Protected routes, role-aware navigation, loading and error states, and Axios-based API integration.",
+        },
+      ],
+      stack: [
+        {
+          group: "Backend",
+          items: ["Python", "Django", "Django REST Framework", "SimpleJWT", "django-filter"],
+        },
+        {
+          group: "Frontend",
+          items: ["React 19", "Vite", "React Router", "Axios", "Tailwind CSS"],
+        },
+        { group: "Database", items: ["SQLite"] },
+      ],
+    },
   },
 ];
 
