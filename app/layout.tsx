@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
-import { siteConfig } from "@/data/portfolio";
+import { certifications, siteConfig } from "@/data/portfolio";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,7 +16,7 @@ const manrope = Manrope({
   display: "swap",
 });
 
-const siteTitle = `${siteConfig.name} | ${siteConfig.title}`;
+const siteTitle = siteConfig.seoTitle;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -26,22 +26,26 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.fullName, url: siteConfig.url }],
   creator: siteConfig.fullName,
   keywords: [
-    "Full Stack Developer",
-    "Web Developer",
-    "Software Developer",
-    "Software Engineer",
-    "Backend Developer",
-    "Frontend Developer",
-    "Web Developer",
-    "Web Designer",
-    "Laravel",
-    "React",
-    "Next.js",
     "Md Asaduzzaman Anik",
     "Asaduzzaman Anik",
+    "Full Stack Developer",
+    "Full Stack Engineer",
+    "Software Engineer",
+    "Backend Developer",
+    "Django Developer",
+    "Django REST Framework Developer",
+    "Python Developer",
+    "Laravel Developer",
+    "PHP Developer",
+    "React Developer",
+    "Next.js Developer",
+    "REST API Developer",
+    "Django REST Framework",
+    "Laravel REST API",
     "ERP",
     "CRM",
     "POS",
+    "Inventory Management System",
     "Ecommerce",
   ],
   alternates: {
@@ -92,9 +96,33 @@ const jsonLd = {
       url: siteConfig.url,
       email: siteConfig.email,
       jobTitle: siteConfig.title,
-      description: siteConfig.description,
+      description:
+        "Full Stack Developer specializing in Django, Django REST Framework, Laravel, React, and Next.js, building scalable web applications, REST APIs, and business management software.",
       sameAs: [siteConfig.github, siteConfig.linkedin],
-      knowsAbout: ["Laravel", "React", "Next.js", "TypeScript", "ERP", "CRM"],
+      knowsAbout: [
+        "Python",
+        "Django",
+        "Django REST Framework",
+        "PHP",
+        "Laravel",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "REST APIs",
+        "MySQL",
+        "PostgreSQL",
+        "SQLite",
+        "ERP",
+        "CRM",
+        "Inventory Management",
+      ],
+      hasCredential: certifications.map((cert) => ({
+        "@type": "EducationalOccupationalCredential",
+        name: cert.title,
+        credentialCategory: "certificate",
+        url: cert.url,
+        recognizedBy: { "@type": "Organization", name: cert.issuer },
+      })),
     },
   ],
 };

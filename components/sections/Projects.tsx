@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import { RedirectIcon } from "@/components/icons";
-import { projects } from "@/data/portfolio";
+import { projects, siteConfig } from "@/data/portfolio";
 
 const categoryColors: Record<string, string> = {
   indigo: "text-indigo-600 dark:text-indigo-400",
   emerald: "text-emerald-600 dark:text-emerald-400",
   sky: "text-sky-600 dark:text-sky-400",
   violet: "text-violet-600 dark:text-violet-400",
+  rose: "text-rose-600 dark:text-rose-400",
 };
 
 export default function Projects() {
@@ -43,13 +44,42 @@ export default function Projects() {
               <Reveal key={project.title} className="h-full">
                 <article className="project-card flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[var(--shadow-soft)] dark:border-slate-800 dark:bg-slate-900">
                   <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="project-preview object-cover object-top transition duration-500"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                    />
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="project-preview object-cover object-top transition duration-500"
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                      />
+                    ) : (
+                      <div
+                        aria-hidden
+                        className="project-preview absolute inset-0 flex flex-col bg-gradient-to-br from-slate-50 to-indigo-50 transition duration-500 dark:from-slate-900 dark:to-indigo-950/50"
+                      >
+                        <div className="absolute inset-0 bg-hero-grid bg-[size:28px_28px]" />
+                        <div className="relative flex items-center gap-3 border-b border-slate-200 px-4 py-3 dark:border-white/10">
+                          <div className="flex shrink-0 gap-1.5">
+                            <span className="h-2 w-2 rounded-full bg-rose-400" />
+                            <span className="h-2 w-2 rounded-full bg-amber-400" />
+                            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                          </div>
+                          <span className="truncate font-mono text-[11px] text-slate-500">
+                            {project.github.replace("https://", "")}
+                          </span>
+                        </div>
+                        <div className="relative flex flex-1 flex-wrap content-center justify-center gap-2 px-6">
+                          {project.tags.slice(0, 4).map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-xl border border-slate-200 bg-white/90 px-3.5 py-2 font-mono text-sm font-semibold text-slate-800 shadow-sm dark:border-white/10 dark:bg-slate-900/80 dark:text-slate-100"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     {isPrivate && (
                       <span className="absolute right-3 top-3 rounded-full border border-slate-200 bg-white/95 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600 backdrop-blur dark:border-slate-700 dark:bg-slate-900/95 dark:text-slate-300">
                         In progress
@@ -75,7 +105,7 @@ export default function Projects() {
 
                     <div className="mt-4 border-t border-slate-100 pt-4 dark:border-slate-800">
                       <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-500">
-                        {isPrivate ? "Case study highlights" : "Key results"}
+                        {project.status === "live" ? "Key results" : "Case study highlights"}
                       </p>
                       <ul className="mt-3 space-y-2">
                         {project.outcomes.map((outcome) => (
@@ -140,6 +170,26 @@ export default function Projects() {
               </Reveal>
             );
           })}
+
+          <Reveal className="h-full">
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-full min-h-48 flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-slate-300 p-6 text-center transition hover:-translate-y-1 hover:border-indigo-400 dark:border-slate-700 dark:hover:border-indigo-500"
+            >
+              <span className="font-display text-lg font-bold text-slate-950 dark:text-white">
+                More on GitHub
+              </span>
+              <span className="text-sm text-slate-500">
+                Source for Django, Laravel, and React projects.
+              </span>
+              <span className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                {siteConfig.github.replace("https://", "")}
+                <RedirectIcon />
+              </span>
+            </a>
+          </Reveal>
         </div>
       </div>
     </section>

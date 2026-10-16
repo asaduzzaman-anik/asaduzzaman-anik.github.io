@@ -1,5 +1,6 @@
 import Reveal from "@/components/ui/Reveal";
-import { experiences } from "@/data/portfolio";
+import { RedirectIcon } from "@/components/icons";
+import { certifications, experiences } from "@/data/portfolio";
 
 export default function Experience() {
   return (
@@ -14,9 +15,35 @@ export default function Experience() {
               Building systems that solve operational problems.
             </h2>
             <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-400">
-              Selected experience across ERP, ecommerce, backend APIs, and
-              product-focused web development.
+              Professional Laravel work on ERP, CRM, POS, and ecommerce
+              systems, plus Django and DRF applications built independently.
             </p>
+
+            {certifications.map((cert) => (
+              <div
+                key={cert.title}
+                className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+              >
+                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-slate-500">
+                  Certification · {cert.year}
+                </p>
+                <p className="mt-2 text-sm font-bold text-slate-950 dark:text-white">
+                  {cert.title}
+                </p>
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                  <span className="text-sm text-slate-500">{cert.issuer}</span>
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 transition hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300"
+                  >
+                    View certificate
+                    <RedirectIcon />
+                  </a>
+                </div>
+              </div>
+            ))}
           </Reveal>
 
           <div className="space-y-6">

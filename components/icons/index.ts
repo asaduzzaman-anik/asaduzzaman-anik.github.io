@@ -3,6 +3,8 @@ export { default as CheckIcon } from "./CheckIcon";
 export { default as ChevronRightIcon } from "./ChevronRightIcon";
 export { default as CloseIcon } from "./CloseIcon";
 export { default as CurrencyIcon } from "./CurrencyIcon";
+export { default as DatabaseIcon } from "./DatabaseIcon";
+export { default as DeliveryIcon } from "./DeliveryIcon";
 export { default as DownloadIcon } from "./DownloadIcon";
 export { default as FrontendIcon } from "./FrontendIcon";
 export { default as GithubIcon } from "./GithubIcon";
