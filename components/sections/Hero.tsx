@@ -7,9 +7,10 @@ import {
   CurrencyIcon,
   GithubIcon,
   LinkedinIcon,
+  RedirectIcon,
   TrendUpIcon,
 } from "@/components/icons";
-import { siteConfig } from "@/data/portfolio";
+import { heroStack, siteConfig } from "@/data/portfolio";
 
 export default function Hero() {
   return (
@@ -23,7 +24,7 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
-            Available for selected projects
+            Open to Full Stack Developer opportunities
           </div>
 
           <p className="mb-4 text-base font-semibold text-indigo-600 dark:text-indigo-400">
@@ -37,7 +38,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl dark:text-slate-400">
-            {siteConfig.description}
+            {siteConfig.intro}
           </p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -49,10 +50,13 @@ export default function Hero() {
               <ChevronRightIcon />
             </a>
             <a
-              href="#contact"
+              href={siteConfig.resume}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-300 bg-white/70 px-6 py-3.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:-translate-y-1 hover:border-slate-400 dark:border-slate-700 dark:bg-slate-900/70 dark:text-white dark:hover:border-slate-600"
             >
-              Start a conversation
+              View Resume
+              <RedirectIcon />
             </a>
           </div>
 
@@ -101,7 +105,7 @@ export default function Hero() {
                       Current focus
                     </p>
                     <h2 className="mt-2 font-display text-xl font-bold text-slate-950 dark:text-white">
-                      Scalable business software
+                      Full Stack Web Development
                     </h2>
                   </div>
                   <div className="grid h-12 w-12 place-items-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-300">
@@ -111,8 +115,8 @@ export default function Hero() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/[0.04]">
-                    <p className="text-2xl font-bold text-slate-950 dark:text-white">4+</p>
-                    <p className="mt-1 text-xs text-slate-500">Core technologies</p>
+                    <p className="text-2xl font-bold text-slate-950 dark:text-white">2</p>
+                    <p className="mt-1 text-xs text-slate-500">Backend frameworks</p>
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/[0.04]">
                     <p className="text-2xl font-bold text-slate-950 dark:text-white">12+</p>
@@ -129,21 +133,17 @@ export default function Hero() {
                       Active
                     </span>
                   </div>
-                  <div className="space-y-3">
-                    {[
-                      ["Laravel", "Backend"],
-                      ["Next.js + React", "Frontend"],
-                      ["Tailwind CSS", "UI System"],
-                    ].map(([tech, label]) => (
+                  <dl className="space-y-3">
+                    {heroStack.map(({ tech, label }) => (
                       <div
-                        key={tech}
-                        className="flex items-center justify-between rounded-xl bg-white px-3 py-2.5 shadow-sm dark:bg-white/[0.04] dark:shadow-none"
+                        key={label}
+                        className="flex items-center justify-between gap-4 rounded-xl bg-white px-3 py-2.5 shadow-sm dark:bg-white/[0.04] dark:shadow-none"
                       >
-                        <span className="text-sm text-slate-700 dark:text-slate-300">{tech}</span>
-                        <span className="text-xs text-slate-500">{label}</span>
+                        <dt className="order-last shrink-0 text-xs text-slate-500">{label}</dt>
+                        <dd className="min-w-0 text-sm text-slate-700 dark:text-slate-300">{tech}</dd>
                       </div>
                     ))}
-                  </div>
+                  </dl>
                 </div>
 
                 <div className="flex items-center gap-3 rounded-2xl border border-indigo-200 bg-indigo-50 p-4 dark:border-indigo-400/20 dark:bg-indigo-400/10">

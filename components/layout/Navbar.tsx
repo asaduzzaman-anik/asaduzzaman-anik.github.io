@@ -6,10 +6,18 @@ import { navLinks, siteConfig } from "@/data/portfolio";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { CloseIcon, MenuIcon } from "@/components/icons";
 
-export default function Navbar() {
+type NavbarProps = {
+  /** False on sub-pages (e.g. case studies): section links then point back to the home page. */
+  onHome?: boolean;
+};
+
+export default function Navbar({ onHome = true }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeHref, setActiveHref] = useState(navLinks[0]?.href ?? "");
+  const [activeHref, setActiveHref] = useState(
+    onHome ? (navLinks[0]?.href ?? "") : "",
+  );
+  const resolveHref = (href: string) => (onHome ? href : `/${href}`);
   const menuId = useId();
   const menuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -115,7 +123,7 @@ export default function Navbar() {
         aria-label="Primary navigation"
       >
         <a
-          href="#home"
+          href={onHome ? "#home" : "/"}
           className="group inline-flex shrink-0 items-center gap-3"
           aria-label={`${siteConfig.name} portfolio home`}
         >
@@ -137,7 +145,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={resolveHref(link.href)}
               className={linkClass(link.href)}
               aria-current={activeHref === link.href ? "page" : undefined}
             >
@@ -172,7 +180,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={resolveHref(link.href)}
               onClick={closeMenu}
               className={linkClass(link.href, true)}
               aria-current={activeHref === link.href ? "page" : undefined}

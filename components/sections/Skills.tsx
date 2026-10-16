@@ -1,21 +1,24 @@
 import Reveal from "@/components/ui/Reveal";
 import {
   BackendIcon,
+  DatabaseIcon,
+  DeliveryIcon,
   FrontendIcon,
-  UiSystemIcon,
 } from "@/components/icons";
 import { skillCategories } from "@/data/portfolio";
 
 const iconColors: Record<string, string> = {
   rose: "bg-rose-50 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400",
   sky: "bg-sky-50 text-sky-600 dark:bg-sky-500/10 dark:text-sky-400",
+  emerald: "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400",
   violet: "bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-400",
 };
 
 const skillIcons = {
   backend: BackendIcon,
   frontend: FrontendIcon,
-  ui: UiSystemIcon,
+  database: DatabaseIcon,
+  delivery: DeliveryIcon,
 } as const;
 
 export default function Skills() {
@@ -33,12 +36,12 @@ export default function Skills() {
             A practical, modern technology stack.
           </h2>
           <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-400">
-            Tools selected for maintainability, performance, and excellent
-            developer experience.
+            Two backend ecosystems — Python/Django and PHP/Laravel — paired
+            with React and Next.js on the frontend.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:grid-cols-2">
           {skillCategories.map((skill) => {
             const Icon = skillIcons[skill.icon];
 
