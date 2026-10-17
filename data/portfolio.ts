@@ -518,7 +518,7 @@ export const projects: Project[] = [
     tags: ["Python", "Django", "DRF", "React", "TypeScript", "MySQL"],
     live: "",
     github: "https://github.com/asaduzzaman-anik/django-inventory-management",
-    image: "/projects/django-inventory/dashboard.png",
+    image: "/projects/django-inventory/dashboard.webp",
     status: "source",
     problem:
       "Inventory spread across several warehouses needs stock numbers that can be trusted: every movement auditable, no overselling when receipts and sales happen at the same time, and staff limited to the warehouses they are responsible for.",
@@ -620,39 +620,74 @@ export const projects: Project[] = [
       ],
       gallery: [
         {
-          src: "/projects/django-inventory/stock-levels.png",
-          alt: "Inventory stock levels table listing on-hand, reserved, and available quantities per warehouse",
+          src: "/projects/django-inventory/stock-levels.webp",
+          alt: "Inventory stock levels table listing on-hand, reserved, and available quantities per product across three warehouses",
           caption:
             "Stock levels — on-hand, reserved, and available per warehouse, with receive, transfer, and adjust actions.",
         },
         {
-          src: "/projects/django-inventory/transaction-ledger.png",
-          alt: "Transaction history table showing stock movements with change, running balance, and source document",
+          src: "/projects/django-inventory/product-detail.webp",
+          alt: "Product detail page with category, supplier, barcode, cost and selling price, reorder level, and stock by warehouse",
           caption:
-            "Transaction ledger — every movement with its quantity change, running balance, and source document.",
+            "Product detail — pricing, reorder level, and on-hand, reserved, and available stock in each warehouse.",
         },
         {
-          src: "/projects/django-inventory/purchase-order.png",
-          alt: "Purchase order detail page with ordered and received quantities and a linked goods receipt",
+          src: "/projects/django-inventory/warehouse-detail.webp",
+          alt: "Warehouse detail page with contact and address details and a table of the stock held there",
+          caption: "Warehouse detail — contact details and the stock held at that location.",
+        },
+        {
+          src: "/projects/django-inventory/transaction-ledger.webp",
+          alt: "Transaction history table showing purchase, receipt, sale, and return movements with change, running balance, and source document",
           caption:
-            "Purchase order — ordered vs. received quantities, with goods receipts linked to the order.",
+            "Transaction ledger — purchases, receipts, sales, and returns, each with its quantity change, running balance, and source document.",
         },
         {
-          src: "/projects/django-inventory/sales-order.png",
-          alt: "Sales order detail page with totals, payment status, line items, and returns",
-          caption: "Sales order — totals, payment status, line items, and returns.",
-        },
-        {
-          src: "/projects/django-inventory/inventory-report.png",
-          alt: "Inventory report with warehouse, category, and status filters and CSV and Excel export buttons",
+          src: "/projects/django-inventory/adjust-stock.webp",
+          alt: "Adjust stock form with warehouse, product, available quantity, signed quantity change, reason, and note fields",
           caption:
-            "Inventory report — filter by warehouse, category, and status; export to CSV or Excel.",
+            "Stock adjustment — signed quantity changes with a reason code, reviewed before they hit the ledger.",
         },
         {
-          src: "/projects/django-inventory/transfer-stock.png",
-          alt: "Transfer stock form with source and destination warehouse, product, and quantity fields",
+          src: "/projects/django-inventory/transfer-stock.webp",
+          alt: "Transfer stock form with source and destination warehouse, product, available quantity, and note fields",
           caption:
             "Stock transfer — move stock between warehouses, reviewed before it is applied.",
+        },
+        {
+          src: "/projects/django-inventory/purchase-orders.webp",
+          alt: "Purchase orders list with supplier, warehouse, total, and draft, submitted, approved, and partially received statuses",
+          caption:
+            "Purchasing — orders move from draft to submitted, approved, and received, including partial receipts.",
+        },
+        {
+          src: "/projects/django-inventory/sales-orders.webp",
+          alt: "Sales orders list with customer, warehouse, total, and draft, confirmed, processing, completed, and cancelled statuses alongside payment status",
+          caption:
+            "Sales orders — order status from draft to completed or cancelled, tracked separately from payment status.",
+        },
+        {
+          src: "/projects/django-inventory/sales-order.webp",
+          alt: "Completed sales order with customer details, discount, tax, payment status, line items, and returned quantities",
+          caption:
+            "Sales order — customer, discount and tax totals, payment status, and line-level returns.",
+        },
+        {
+          src: "/projects/django-inventory/inventory-report.webp",
+          alt: "Inventory report with warehouse, category, and status filters, stock value per line, and CSV and Excel export buttons",
+          caption:
+            "Inventory report — filter by warehouse, category, and status, with stock value; export to CSV or Excel.",
+        },
+        {
+          src: "/projects/django-inventory/users.webp",
+          alt: "Users list with username, email, role such as Warehouse Manager, Sales Staff, Inventory Staff, or Super Admin, and status",
+          caption:
+            "Users and roles — Super Admin, Warehouse Manager, Inventory Staff, and Sales Staff, filterable by role and status.",
+        },
+        {
+          src: "/projects/django-inventory/audit-log.webp",
+          alt: "Audit log table listing user, action, entity, and record for logins, creates, status changes, and receipts",
+          caption: "Audit log — who did what, to which record, searchable by action and date range.",
         },
       ],
     },
