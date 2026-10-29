@@ -6,6 +6,8 @@ node_modules/
 out/
 
 # env / secrets
+.env
+.env.*
 !.env.example
 
 # debug / logs
@@ -24,5 +26,5 @@ Thumbs.db
 *.pem
 .vercel
 .idea/
+.vscode/
 *.local
-config.bat
